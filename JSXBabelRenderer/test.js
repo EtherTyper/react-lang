@@ -1,5 +1,5 @@
 import React from 'react';
-import { reduce, generateAST, flatten, render } from '.';
+import { render, reduce } from '.';
 
 const HelloGenerator = ({name, children}) => (
     <string>

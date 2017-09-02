@@ -25,30 +25,26 @@ export function reduce(element) {
         );
     } else if (Array.isArray(element)) {
         return element.map(reduce);
+    } else if (typeof element.type === 'function') {
+        return reduce(element.type(element.props));
     } else if (typeof element === 'undefined') {
         return undefined;
     }
 
-    let executedElement = element;
-
-    while (typeof executedElement.type === 'function') {
-        executedElement = element.type(element.props);
-    }
-
     let reducedChildren = [];
 
-    if (Array.isArray(executedElement.props.children)) {
-        reducedChildren = executedElement.props.children.map(reduce);
+    if (Array.isArray(element.props.children)) {
+        reducedChildren = element.props.children.map(reduce);
     } else if (element !== null) {
-        reducedChildren = [reduce(executedElement.props.children)];
+        reducedChildren = [reduce(element.props.children)];
     }
 
     reducedChildren = flatten(reducedChildren);
 
     return {
-        ...executedElement,
+        ...element,
         props: {
-            ...executedElement.props,
+            ...element.props,
             children: reducedChildren
         }
     };
@@ -85,4 +81,5 @@ export function generateAST(element) {
 }
 
 const render = (element) => generate(generateAST(reduce(element))).code;
+export default render;
 export { render };
