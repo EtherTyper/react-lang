@@ -1,6 +1,8 @@
 # react-lang
 A React renderer to real programs!
 
+Only the `JSXBabelRenderer` folder is being actively worked on. None of it is being 'maintained.'
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
