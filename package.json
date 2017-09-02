@@ -1,10 +1,18 @@
 {
   "name": "react-lang",
   "version": "0.1.0",
-  "private": true,
+  "license": "ISC",
   "dependencies": {
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "babel-cli": "next",
+    "babel-generator": "next",
+    "babel-preset-env": "next",
+    "babel-preset-react": "next",
+    "babel-preset-stage-0": "next",
+    "babylon": "next",
+    "deku": "next",
+    "react": "next",
+    "react-dom": "next",
+    "react-json-renderer": "^0.5.1",
     "react-scripts": "1.0.11"
   },
   "scripts": {

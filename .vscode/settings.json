@@ -1,0 +1,4 @@
+{
+    // Enable/disable JavaScript validation.
+    "javascript.validate.enable": false
+}

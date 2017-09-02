@@ -1,0 +1,3 @@
+[submodule "TinyReactRenderer"]
+	path = TinyReactRenderer
+	url = https://github.com/iamdustan/tiny-react-renderer.git
