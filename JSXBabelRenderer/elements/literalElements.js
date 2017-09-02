@@ -22,7 +22,7 @@ const Literals = (Super = Object) => class BasicElements extends Super {
         let value = props.value || '';
 
         for (let child of children) {
-            if (child.type != "StringLiteral") {
+            if (child.type !== "StringLiteral") {
                 throw TypeError("Strings can only contain strings");
             }
 

@@ -1,6 +1,6 @@
-const React = require('react');
+import React from 'react';
+import { reduce, generateAST, flatten, render } from '.';
 
-const { reduce, generateAST, flatten, render } = require('.');
 const HelloGenerator = ({name, children}) => (
     <string>
         Hello {name}!
@@ -17,9 +17,22 @@ const functionalElement = (
     </HelloGenerator>
 );
 
-console.log(render(/lo+l/g));
-console.log(render(null));
-console.log(render('Hello world'));
-console.log(render(5));
-console.log(render(false));
-console.log(render(functionalElement));
+function testElement(element, description) {
+    description = description || reduce(element).type
+    description = description.charAt(0).toUpperCase() + description.slice(1)
+
+    console.log(`${description}: ${render(element)}`)
+}
+
+// Literals
+testElement(/lo+l/g);
+testElement(null);
+testElement('Hello world');
+testElement(5);
+testElement(false);
+
+// Identifiers
+testElement(<identifier>helloWorld</identifier>);
+// testElement(<privateName>helloIlluminati</privateName>);
+
+testElement(functionalElement, 'Functional element');

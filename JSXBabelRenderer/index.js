@@ -40,7 +40,7 @@ export function reduce(element) {
     if (Array.isArray(executedElement.props.children)) {
         reducedChildren = executedElement.props.children.map(reduce);
     } else if (element !== null) {
-        reducedChildren = reduce(executedElement.props.children);
+        reducedChildren = [reduce(executedElement.props.children)];
     }
 
     reducedChildren = flatten(reducedChildren);
