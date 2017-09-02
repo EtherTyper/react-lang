@@ -1,16 +1,18 @@
 const React = require('react');
 
-const { reduce, generateAST, flatten, render } = require('./JSXBabelRenderer');
+const { reduce, generateAST, flatten, render } = require('.');
 const HelloGenerator = ({name, children}) => (
     <string>
-        Hello {name}! {children}
+        Hello {name}!
+        {children ? [' ', ...children] : ''}
+        {/* Only add space if children come after. */}
     </string>
 );
 
 const functionalElement = (
     <HelloGenerator name="Linda">
         Yo!
-        {' '}
+        {' '}
         <HelloGenerator name="Bob" />
     </HelloGenerator>
 );
