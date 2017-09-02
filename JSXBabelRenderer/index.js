@@ -39,7 +39,7 @@ export function reduce(element) {
         reducedChildren = [reduce(element.props.children)];
     }
 
-    let flattenedChildren = flatten(reducedChildren);
+    const flattenedChildren = flatten(reducedChildren);
 
     return {
         ...element,
@@ -52,14 +52,12 @@ export function reduce(element) {
 
 export function flatten(array) {
     return array.reduce(function (accumulator, currentValue) {
-        let currentValueArray;
+        let currentValueArray = [];
         
         if (Array.isArray(currentValue)) {
             currentValueArray = flatten(currentValue);
         } else if (typeof currentValue !== 'undefined') {
             currentValueArray = [currentValue];
-        } else {
-            currentValueArray = [];
         }
 
         return accumulator.concat(currentValueArray);
@@ -67,14 +65,12 @@ export function flatten(array) {
 }
 
 export function generateAST(element) {
-    let children;
+    let children = [];
 
     if (Array.isArray(element.props.children)) {
         children = element.props.children.map(generateAST);
     } else if (typeof element.props.children === 'object') {
         children = [generateAST(element.props.children)];
-    } else {
-        children = [];
     }
 
     return BasicElements[element.type](element, element.props, children);
