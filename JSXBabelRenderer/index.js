@@ -39,13 +39,13 @@ export function reduce(element) {
         reducedChildren = [reduce(element.props.children)];
     }
 
-    reducedChildren = flatten(reducedChildren);
+    let flattenedChildren = flatten(reducedChildren);
 
     return {
         ...element,
         props: {
             ...element.props,
-            children: reducedChildren
+            children: flattenedChildren
         }
     };
 }
