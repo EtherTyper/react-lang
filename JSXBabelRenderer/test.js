@@ -27,7 +27,15 @@ function testElement(element, description) {
         process.stdout.write('\u001B[1;31m');
         console.log(`${description}: ${exception}`);
         process.stdout.write('\u001B[0m');
-        console.log(`Generated AST for ${description}: ${JSON.stringify(generateAST(reduce(element)), null, 2)}`);
+        try {
+            console.log(`Generated AST for ${description}: ${JSON.stringify(generateAST(reduce(element)), null, 2)}`);
+        } catch {
+            try {
+                console.log(`Reduced element tree for ${description}: ${JSON.stringify(reduce(element), null, 2)}`);
+            } catch {
+                console.log(`Raw JSX component for ${description}: ${JSON.stringify(element, null, 2)}`);
+            }
+        }
     }
 }
 
@@ -42,4 +50,4 @@ testElement(false);
 testElement(<identifier>helloWorld</identifier>);
 testElement(<privateName>helloIlluminati</privateName>);
 
-testElement(functionalElement, 'Functional element');
+testElement(functionalElement, 'Functional Element');
