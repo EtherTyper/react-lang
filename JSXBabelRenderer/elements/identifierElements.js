@@ -36,7 +36,7 @@ const Identifiers = (Super = Object) => class BasicElements extends Super {
 
         return {
             type: "PrivateName",
-            name: id
+            id: id
         };
     }
 }

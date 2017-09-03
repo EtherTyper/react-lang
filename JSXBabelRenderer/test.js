@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, reduce } from '.';
+import { render, reduce, generateAST } from '.';
 
 const HelloGenerator = ({name, children}) => (
     <string>
@@ -21,7 +21,14 @@ function testElement(element, description) {
     description = description || reduce(element).type
     description = description.charAt(0).toUpperCase() + description.slice(1)
 
-    console.log(`${description}: ${render(element)}`)
+    try {
+        console.log(`${description}: ${render(element)}`);
+    } catch (exception) {
+        process.stdout.write('\u001B[1;31m');
+        console.log(`${description}: ${exception}`);
+        process.stdout.write('\u001B[0m');
+        console.log(`Generated AST for ${description}: ${JSON.stringify(generateAST(reduce(element)), null, 2)}`);
+    }
 }
 
 // Literals
@@ -33,6 +40,6 @@ testElement(false);
 
 // Identifiers
 testElement(<identifier>helloWorld</identifier>);
-// testElement(<privateName>helloIlluminati</privateName>);
+testElement(<privateName>helloIlluminati</privateName>);
 
 testElement(functionalElement, 'Functional element');
