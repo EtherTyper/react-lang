@@ -1,3 +1,6 @@
 [submodule "TinyReactRenderer"]
 	path = TinyReactRenderer
 	url = https://github.com/iamdustan/tiny-react-renderer.git
+[submodule "react"]
+	path = react
+	url = https://www.github.com/facebook/react.git
