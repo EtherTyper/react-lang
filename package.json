@@ -1,7 +1,11 @@
 {
-  "name": "react-lang",
-  "version": "0.1.0",
-  "license": "ISC",
+  "name": "JSXBabelRenderer",
+  "version": "1.0.0",
+  "description": "A compiler from JSX elements => Babel-ified JavaScript",
+  "main": "JSXBabelRenderer/index.js",
+  "repository": "https://github.com/EtherTyper/react-lang",
+  "author": "Eli Bradley",
+  "license": "Apache-2.0",
   "dependencies": {
     "babel-cli": "next",
     "babel-generator": "next",
