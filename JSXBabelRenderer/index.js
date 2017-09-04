@@ -60,7 +60,7 @@ export function flatten(array) {
             currentValueArray = [currentValue];
         }
 
-        return accumulator.concat(currentValueArray);
+        return [...accumulator, ...currentValueArray];
     }, []);
 }
 
