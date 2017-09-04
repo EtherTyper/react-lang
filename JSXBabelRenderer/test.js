@@ -24,9 +24,9 @@ function testElement(element, description) {
     try {
         console.log(`${description}: ${render(element)}`);
     } catch (exception) {
-        process.stdout.write('\u001B[1;31m');
+        process.stdout.write('\u001B[1;31m'); // Red and bold.
         console.log(`${description}: ${exception}`);
-        process.stdout.write('\u001B[0m');
+        process.stdout.write('\u001B[0m'); // Resets font.
         try {
             console.log(`Generated AST for ${description}: ${JSON.stringify(generateAST(reduce(element)), null, 2)}`);
         } catch {
@@ -50,4 +50,5 @@ testElement(false);
 testElement(<identifier>helloWorld</identifier>);
 testElement(<privateName>helloIlluminati</privateName>);
 
+// Functional (User-defined) Components
 testElement(functionalElement, 'Functional Element');
