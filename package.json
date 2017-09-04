@@ -2,7 +2,7 @@
   "name": "JSXBabelRenderer",
   "version": "1.0.0",
   "description": "A compiler from JSX elements => Babel-ified JavaScript",
-  "main": "JSXBabelRenderer/index.js",
+  "main": "lib/index.js",
   "repository": "https://github.com/EtherTyper/react-lang",
   "author": "Eli Bradley",
   "license": "Apache-2.0",
@@ -23,6 +23,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "build-renderer": "babel JSXBabelRenderer -d lib"
   }
 }
