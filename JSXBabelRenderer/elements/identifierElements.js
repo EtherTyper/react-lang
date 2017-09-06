@@ -1,3 +1,6 @@
+import React from 'react'
+import { generateAST } from '..';
+
 const Identifiers = (Super = Object) => class BasicElements extends Super {
     static identifier(element, props, children) {
         let name = '';
@@ -5,11 +8,11 @@ const Identifiers = (Super = Object) => class BasicElements extends Super {
         if (props.name) {
             name = props.name;
         } else if (children[0].type === "StringLiteral") {
-            name = children[0].value;
+            name = children.shift().value;
         }
 
         return {
-            type: "Identifier",
+            ...generateAST(<expression type="Identifier" />),
             name: name
         };
     }
@@ -19,23 +22,27 @@ const Identifiers = (Super = Object) => class BasicElements extends Super {
         let id = {};
 
         if (typeof props.name === 'string') {
-            id = this.identifier(null, {
-                name: props.name
-            }, []);
+            id = generateAST(
+                <identifier>
+                    {props.name}
+                </identifier>
+            );
         } else if (children[0]) {
             if (children[0].type === "StringLiteral") {
-                id = this.identifier(null, {
-                    name: children[0].value
-                }, []);
+                id = generateAST(
+                    <identifier>
+                        {children.shift().value}
+                    </identifier>
+                );
             } else if (children[0].type === "Identifier") {
-                id = children[0];
+                id = children.shift();
             } 
         } else {
             throw TypeError("Must supply identifier for private name.");
         }
 
         return {
-            type: "PrivateName",
+            ...generateAST(<expression type="PrivateName" />),
             id: id
         };
     }

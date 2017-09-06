@@ -1,4 +1,11 @@
+import React from 'react'
+import { generateAST } from '..';
+
 const Literals = (Super = Object) => class BasicElements extends Super {
+    static literal(element, props, children) {
+        return generateAST(<expression {...props} />);
+    }
+    
     static regExp(element, props, children) {
         let value = props.value instanceof RegExp ? props.value : /.+/g;
 
@@ -6,16 +13,14 @@ const Literals = (Super = Object) => class BasicElements extends Super {
         let flags = value.flags;
 
         return {
-            type: "RegExpLiteral",
+            ...generateAST(<literal type="RegExpLiteral" />),
             pattern: pattern,
             flags: flags
         };
     }
 
     static null(element, props, children) {
-        return {
-            type: "NullLiteral"
-        };
+        return generateAST(<literal type="NullLiteral" />);
     }
     
     static string(element, props, children) {
@@ -30,7 +35,7 @@ const Literals = (Super = Object) => class BasicElements extends Super {
         }
 
         return {
-            type: "StringLiteral",
+            ...generateAST(<literal type="StringLiteral" />),
             value: value
         };
     }
@@ -39,7 +44,7 @@ const Literals = (Super = Object) => class BasicElements extends Super {
         let value = typeof props.value === 'boolean' ? props.value : false;
 
         return {
-            type: "BooleanLiteral",
+            ...generateAST(<literal type="BooleanLiteral" />),
             value: value
         }
     }
@@ -48,7 +53,7 @@ const Literals = (Super = Object) => class BasicElements extends Super {
         let value = typeof props.value === 'number' ? props.value : Math.random();
 
         return {
-            type: "NumericLiteral",
+            ...generateAST(<literal type="NumericLiteral" />),
             value: value
         };
     }

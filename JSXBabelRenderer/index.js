@@ -2,7 +2,7 @@ import React from 'react'
 import generate from 'babel-generator'
 import BasicElements from './elements'
 
-export function reduce(element) {
+export function reduceToTree(element) {
     if (element instanceof RegExp) {
         return (
             <regExp value={element} />
@@ -24,19 +24,19 @@ export function reduce(element) {
             <number value={element} />
         );
     } else if (Array.isArray(element)) {
-        return element.map(reduce);
-    } else if (typeof element.type === 'function') {
-        return reduce(element.type(element.props));
+        return element.map(reduceToTree);
     } else if (typeof element === 'undefined') {
         return undefined;
+    } else if (typeof element.type === 'function') {
+        return reduceToTree(element.type(element.props));
     }
 
     let reducedChildren = [];
 
     if (Array.isArray(element.props.children)) {
-        reducedChildren = element.props.children.map(reduce);
+        reducedChildren = element.props.children.map(reduceToTree);
     } else if (element !== null) {
-        reducedChildren = [reduce(element.props.children)];
+        reducedChildren = [reduceToTree(element.props.children)];
     }
 
     const flattenedChildren = flatten(reducedChildren);
@@ -64,18 +64,20 @@ export function flatten(array) {
     }, []);
 }
 
-export function generateAST(element) {
+export function generateASTFromTree(element) {
     let children = [];
 
     if (Array.isArray(element.props.children)) {
-        children = element.props.children.map(generateAST);
+        children = element.props.children.map(generateASTFromTree);
     } else if (typeof element.props.children === 'object') {
-        children = [generateAST(element.props.children)];
+        children = [generateASTFromTree(element.props.children)];
     }
 
     return BasicElements[element.type](element, element.props, children);
 }
 
-const render = (element) => generate(generateAST(reduce(element))).code;
+const generateAST = (element) => generateASTFromTree(reduceToTree(element));
+const render = (element) => generate(generateAST(element)).code;
 export default render;
-export { render };
+
+export { render, generateAST };

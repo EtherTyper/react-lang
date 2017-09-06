@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, reduce, generateAST } from '.';
+import { render, reduceToTree, generateAST } from '.';
 
 const HelloGenerator = ({name, children}) => (
     <string>
@@ -18,8 +18,8 @@ const functionalElement = (
 );
 
 function testElement(element, description) {
-    description = description || reduce(element).type
-    description = description.charAt(0).toUpperCase() + description.slice(1)
+    description = description || reduceToTree(element).type;
+    description = description.charAt(0).toUpperCase() + description.slice(1);
 
     try {
         console.log(`${description}: ${render(element)}`);
@@ -28,10 +28,10 @@ function testElement(element, description) {
         console.log(`${description}: ${exception}`);
         process.stdout.write('\u001B[0m'); // Resets font.
         try {
-            console.log(`Generated AST for ${description}: ${JSON.stringify(generateAST(reduce(element)), null, 2)}`);
+            console.log(`Generated AST for ${description}: ${JSON.stringify(generateAST(element), null, 2)}`);
         } catch {
             try {
-                console.log(`Reduced element tree for ${description}: ${JSON.stringify(reduce(element), null, 2)}`);
+                console.log(`Reduced element tree for ${description}: ${JSON.stringify(reduceToTree(element), null, 2)}`);
             } catch {
                 console.log(`Raw JSX component for ${description}: ${JSON.stringify(element, null, 2)}`);
             }
@@ -49,6 +49,14 @@ testElement(false);
 // Identifiers
 testElement(<identifier>helloWorld</identifier>);
 testElement(<privateName>helloIlluminati</privateName>);
+
+// Expressions
+testElement(<super />);
+testElement(<import />);
+testElement(<thisExpression />);
+testElement(<yield delegate={true}>
+    <super />
+</yield>)
 
 // Functional (User-defined) Components
 testElement(functionalElement, 'Functional Element');
