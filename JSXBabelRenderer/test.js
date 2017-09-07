@@ -90,8 +90,8 @@ testElement(
 );
 testElement(
     <bindExpression>
-        <identifier>helloWorld</identifier>
-        <identifier>goodbyeWorld</identifier>
+        <identifier>world</identifier>
+        <identifier>sayHello</identifier>
     </bindExpression>
 );
 testElement(
