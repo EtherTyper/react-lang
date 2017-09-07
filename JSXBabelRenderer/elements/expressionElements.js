@@ -84,6 +84,53 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
             right: right
         };
     }
+
+    static assignmentExpression(element, props, children) {
+        let operator = typeof props.operator === 'string' ? props.operator : '>>>=';
+        let [ left, right ] = children;
+
+        return {
+            ...generateAST(<expression type="AssignmentExpression" />),
+            operator: operator,
+            left: left,
+            right: right
+        };
+    }
+
+    static logicalExpression(element, props, children) {
+        let operator = typeof props.operator === 'string' ? props.operator : '||';
+        let [ left, right ] = children;
+
+        return {
+            ...generateAST(<expression type="LogicalExpression" />),
+            operator: operator,
+            left: left,
+            right: right
+        };
+    }
+
+    static bindExpression(element, props, children) {
+        let callee = children.pop();
+        let object = children.pop() || null;
+
+        return {
+            ...generateAST(<expression type="BindExpression" />),
+            object: object,
+            callee: callee
+        }
+    }
+
+    static conditionalExpression(element, props, children) {
+        let operator = typeof props.operator === 'string' ? props.operator : '||';
+        let [ test, consequent, alternate ] = children;
+
+        return {
+            ...generateAST(<expression type="ConditionalExpression" />),
+            test: test,
+            alternate: alternate,
+            consequent: consequent
+        };
+    }
 }
 
 export default Expressions;
