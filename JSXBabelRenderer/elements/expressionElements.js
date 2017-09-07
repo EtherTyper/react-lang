@@ -75,7 +75,7 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
 
     static binaryExpression(element, props, children) {
         let operator = typeof props.operator === 'string' ? props.operator : 'instanceof';
-        let [ left, right ] = children.splice(0, 2);
+        let [ left, right ] = children;
 
         return {
             ...generateAST(<expression type="BinaryExpression" />),
