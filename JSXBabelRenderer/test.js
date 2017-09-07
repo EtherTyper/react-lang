@@ -51,12 +51,25 @@ testElement(<identifier>helloWorld</identifier>);
 testElement(<privateName>helloIlluminati</privateName>);
 
 // Expressions
-testElement(<super />);
-testElement(<import />);
-testElement(<thisExpression />);
-testElement(<yield delegate={true}>
-    <super />
-</yield>)
+testElement(
+    <array>
+        <await>
+            <yield delegate={true}>
+                <super />
+            </yield>
+        </await>
+        <updateExpression operator="--" prefix={false}>
+            <thisExpression />
+        </updateExpression>
+        <unaryExpression operator="+" prefix={true}>
+            <import />
+        </unaryExpression>
+        <binaryExpression operator="===">
+            {5}
+            {4}
+        </binaryExpression>
+    </array>, 'Array of (pseudo)-Expressions'
+);
 
 // Functional (User-defined) Components
 testElement(functionalElement, 'Functional Element');

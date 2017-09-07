@@ -5,7 +5,7 @@ const Identifiers = (Super = Object) => class BasicElements extends Super {
     static identifier(element, props, children) {
         let name = '';
 
-        if (props.name) {
+        if (typeof props.name === 'string') {
             name = props.name;
         } else if (children[0].type === "StringLiteral") {
             name = children.shift().value;

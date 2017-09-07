@@ -13,7 +13,7 @@ const Nodes = (Super = Object) => class BasicElements extends Super {
         return {
             type: type,
             loc: loc
-        }
+        };
     }
 
     static sourceLocation(element, props, children) {
@@ -25,7 +25,7 @@ const Nodes = (Super = Object) => class BasicElements extends Super {
             source: source,
             start: start,
             end: end
-        }
+        };
     }
 
     static position(element, props, children) {
@@ -39,6 +39,11 @@ const Nodes = (Super = Object) => class BasicElements extends Super {
             line = children.shift().value;
             column = children.shift().value;
         }
+
+        return {
+            line: line,
+            column: column
+        };
     }
 }
 
