@@ -24,6 +24,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "build-renderer": "babel JSXBabelRenderer -d lib"
+    "build-renderer": "babel JSXBabelRenderer -d lib",
+    "test-renderer": "yarn build-renderer; node lib/test.js"
   }
 }

@@ -63,57 +63,65 @@ testElement(
         {5}
     </array>
 );
-testElement(<unaryExpression operator="+" prefix={false}>{3}</unaryExpression>);
+testElement(<unary operator="+" prefix={false}>{3}</unary>);
 testElement(
-    <updateExpression operator="--" prefix={false}>
+    <update operator="--" prefix={false}>
         <identifier>helloWorld</identifier>
         {4}
-    </updateExpression>
+    </update>
 );
 testElement(
-    <binaryExpression operator="===">
+    <binary operator="===">
         {3}
         {4}
-    </binaryExpression>
+    </binary>
 );
 testElement(
-    <assignmentExpression operator=">>>=">
+    <assignment operator=">>>=">
         <identifier>helloWorld</identifier>
         {4}
-    </assignmentExpression>
+    </assignment>
 );
 testElement(
-    <logicalExpression operator="||">
+    <logical operator="||">
         {3}
         {4}
-    </logicalExpression>
+    </logical>
 );
 testElement(
-    <bindExpression>
+    <bind>
         <identifier>world</identifier>
         <identifier>sayHello</identifier>
-    </bindExpression>
+    </bind>
 );
 testElement(
-    <conditionalExpression>
+    <conditional>
         {3}
         {4}
         {5}
-    </conditionalExpression>
+    </conditional>
 );
 testElement(
-    <callExpression optional={true}>
+    <call optional={true}>
         <identifier>hello</identifier>
         <identifier>world</identifier>
         What's up world?
-    </callExpression>
+    </call>
 );
 testElement(
-    <newExpression>
+    <new>
         <identifier>Hello</identifier>
         <identifier>world</identifier>
         What's up world?
-    </newExpression>
+    </new>
 );
+testElement(
+    <sequence>
+        {3}
+        {4}
+        {5}
+    </sequence>
+);
+
 // Functional (User-defined) Components
 testElement(functionalElement, 'Functional Element');

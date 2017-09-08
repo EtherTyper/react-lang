@@ -47,7 +47,7 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
         };
     }
 
-    static unaryExpression(element, props, children) {
+    static unary(element, props, children) {
         let operator = typeof props.operator === 'string' ? props.operator : 'typeof';
         let prefix = typeof props.prefix === 'boolean' ? props.prefix : false;
         let argument = children.shift();
@@ -60,7 +60,7 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
         };
     }
 
-    static updateExpression(element, props, children) {
+    static update(element, props, children) {
         let operator = typeof props.operator === 'string' ? props.operator : '--';
         let prefix = typeof props.prefix === 'boolean' ? props.prefix : false;
         let argument = children.shift();
@@ -73,7 +73,7 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
         };
     }
 
-    static binaryExpression(element, props, children) {
+    static binary(element, props, children) {
         let operator = typeof props.operator === 'string' ? props.operator : 'instanceof';
         let [ left, right ] = children;
 
@@ -85,7 +85,7 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
         };
     }
 
-    static assignmentExpression(element, props, children) {
+    static assignment(element, props, children) {
         let operator = typeof props.operator === 'string' ? props.operator : '>>>=';
         let [ left, right ] = children;
 
@@ -97,7 +97,7 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
         };
     }
 
-    static logicalExpression(element, props, children) {
+    static logical(element, props, children) {
         let operator = typeof props.operator === 'string' ? props.operator : '||';
         let [ left, right ] = children;
 
@@ -109,7 +109,7 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
         };
     }
 
-    static bindExpression(element, props, children) {
+    static bind(element, props, children) {
         let callee = children.pop();
         let object = children.pop() || null;
 
@@ -117,10 +117,10 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
             ...generateAST(<expression type="BindExpression" />),
             object: object,
             callee: callee
-        }
+        };
     }
 
-    static conditionalExpression(element, props, children) {
+    static conditional(element, props, children) {
         let operator = typeof props.operator === 'string' ? props.operator : '||';
         let [ test, consequent, alternate ] = children;
 
@@ -132,7 +132,7 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
         };
     }
 
-    static callExpression(element, props, children) {
+    static call(element, props, children) {
         let optional = typeof props.optional === 'boolean' ? props.optional : null;
         let [ callee, ...callArguments ] = children;
 
@@ -141,13 +141,22 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
             callee: callee,
             arguments: callArguments,
             optional: optional
-        }
+        };
     }
 
-    static newExpression(element, props, children) {
+    static new(element, props, children) {
         return generateAST(
-            <callExpression {...props} type="NewExpression" />
+            <call {...props} type="NewExpression" />
         );
+    }
+
+    static sequence(element, props, children) {
+        let expressions = children;
+
+        return {
+            ...generateAST(<expression type="SequenceExpression" />),
+            expressions: expressions
+        };
     }
 }
 
