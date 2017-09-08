@@ -66,7 +66,7 @@ testElement(
 testElement(<unaryExpression operator="+" prefix={false}>{3}</unaryExpression>);
 testElement(
     <updateExpression operator="--" prefix={false}>
-        {3}
+        <identifier>helloWorld</identifier>
         {4}
     </updateExpression>
 );
@@ -100,6 +100,13 @@ testElement(
         {4}
         {5}
     </conditionalExpression>
+);
+testElement(
+    <callExpression>
+        <identifier>hello</identifier>
+        <identifier>world</identifier>
+        What's up world?
+    </callExpression>
 );
 // Functional (User-defined) Components
 testElement(functionalElement, 'Functional Element');

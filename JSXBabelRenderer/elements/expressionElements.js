@@ -131,6 +131,18 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
             consequent: consequent
         };
     }
+
+    static callExpression(element, props, children) {
+        let optional = typeof props.optional === 'boolean' ? props.optional : false;
+        let [ callee, ...callArguments ] = children;
+
+        return {
+            ...generateAST(<expression type="CallExpression" />),
+            callee: callee,
+            arguments: callArguments,
+            optional: optional
+        }
+    }
 }
 
 export default Expressions;
