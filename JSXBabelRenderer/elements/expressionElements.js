@@ -133,15 +133,21 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
     }
 
     static callExpression(element, props, children) {
-        let optional = typeof props.optional === 'boolean' ? props.optional : false;
+        let optional = typeof props.optional === 'boolean' ? props.optional : null;
         let [ callee, ...callArguments ] = children;
 
         return {
-            ...generateAST(<expression type="CallExpression" />),
+            ...generateAST(<expression type={ props.type || "CallExpression" } />),
             callee: callee,
             arguments: callArguments,
             optional: optional
         }
+    }
+
+    static newExpression(element, props, children) {
+        return generateAST(
+            <callExpression {...props} type="NewExpression" />
+        );
     }
 }
 

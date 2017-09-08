@@ -102,11 +102,18 @@ testElement(
     </conditionalExpression>
 );
 testElement(
-    <callExpression>
+    <callExpression optional={true}>
         <identifier>hello</identifier>
         <identifier>world</identifier>
         What's up world?
     </callExpression>
+);
+testElement(
+    <newExpression>
+        <identifier>Hello</identifier>
+        <identifier>world</identifier>
+        What's up world?
+    </newExpression>
 );
 // Functional (User-defined) Components
 testElement(functionalElement, 'Functional Element');
