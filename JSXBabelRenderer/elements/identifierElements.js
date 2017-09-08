@@ -13,6 +13,7 @@ const Identifiers = (Super = Object) => class BasicElements extends Super {
 
         return {
             ...generateAST(<expression type="Identifier" />),
+            ...generateAST(<pattern type="Identifier" />),
             name: name
         };
     }
@@ -43,6 +44,7 @@ const Identifiers = (Super = Object) => class BasicElements extends Super {
 
         return {
             ...generateAST(<expression type="PrivateName" />),
+            ...generateAST(<pattern type="PrivateName" />),
             id: id
         };
     }

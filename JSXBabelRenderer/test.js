@@ -25,7 +25,7 @@ function testElement(element, description) {
         console.log(`${description}: ${render(element)}`);
     } catch (exception) {
         process.stdout.write('\u001B[1;31m'); // Red and bold.
-        console.log(`${description}: ${exception}`);
+        console.log(`${description}: ${exception.stack}`);
         process.stdout.write('\u001B[0m'); // Resets font.
         try {
             console.log(`Generated AST for ${description}: ${JSON.stringify(generateAST(element), null, 2)}`);
@@ -39,29 +39,37 @@ function testElement(element, description) {
     }
 }
 
-// Literals
+function elementSection(description) {
+    description = description.charAt(0).toUpperCase() + description.slice(1);
+
+    process.stdout.write('\n\u001B[1;34m'); // Green and bold and prints new line.
+    console.log(`${description} Components`);
+    process.stdout.write('\u001B[0m\n'); // Resets font and prints new line.
+}
+
+elementSection('literal');
 testElement(/lo+l/g);
 testElement(null);
 testElement('Hello world');
 testElement(5);
 testElement(false);
 
-// Identifiers
+elementSection('identifier');
 testElement(<identifier>helloWorld</identifier>);
 testElement(<privateName>helloIlluminati</privateName>);
 
-// Expressions
+elementSection('expression');
 testElement(<super />);
 testElement(<import />);
 testElement(<thisExpression />);
 testElement(<yield delegate={true}>{3}</yield>);
 testElement(<await>{3}</await>);
 testElement(
-    <array>
+    <arrayExpression>
         {3}
         {4}
         {5}
-    </array>
+    </arrayExpression>
 );
 testElement(<unary operator="+" prefix={false}>{3}</unary>);
 testElement(
@@ -77,10 +85,10 @@ testElement(
     </binary>
 );
 testElement(
-    <assignment operator=">>>=">
+    <assignmentExpression operator=">>>=">
         <identifier>helloWorld</identifier>
         {4}
-    </assignment>
+    </assignmentExpression>
 );
 testElement(
     <logical operator="||">
@@ -123,5 +131,26 @@ testElement(
     </sequence>
 );
 
+elementSection('pattern');
+testElement(
+    <arrayPattern>
+        <identifier>hello</identifier>
+        <identifier>world</identifier>
+        <identifier>object</identifier>
+    </arrayPattern>
+);
+testElement(
+    <restElement>
+        <identifier>world</identifier>
+    </restElement>
+);
+testElement(
+    <assignmentPattern>
+        <identifier>helloWorld</identifier>
+        {4}
+    </assignmentPattern>
+);
+
 // Functional (User-defined) Components
+elementSection('special');
 testElement(functionalElement, 'Functional Element');

@@ -38,7 +38,7 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
         };
     }
 
-    static array(element, props, children) {
+    static arrayExpression(element, props, children) {
         let elements = children;
 
         return {
@@ -85,7 +85,7 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
         };
     }
 
-    static assignment(element, props, children) {
+    static assignmentExpression(element, props, children) {
         let operator = typeof props.operator === 'string' ? props.operator : '>>>=';
         let [ left, right ] = children;
 
