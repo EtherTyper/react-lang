@@ -141,7 +141,7 @@ testElement(
 );
 testElement(
     <restElement>
-        <identifier>world</identifier>
+        <identifier>helloWorld</identifier>
     </restElement>
 );
 testElement(
@@ -149,6 +149,18 @@ testElement(
         <identifier>helloWorld</identifier>
         {4}
     </assignmentPattern>
+);
+
+elementSection('miscellaneous');
+testElement(
+    <decorator>
+        <identifier>helloWorld</identifier>
+    </decorator>
+);
+testElement(
+    <directive>
+        <directiveLiteral>use helloWorld</directiveLiteral>
+    </directive>
 );
 
 // Functional (User-defined) Components

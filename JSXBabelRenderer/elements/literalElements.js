@@ -35,7 +35,7 @@ const Literals = (Super = Object) => class BasicElements extends Super {
         }
 
         return {
-            ...generateAST(<literal type="StringLiteral" />),
+            ...generateAST(<literal type={ props.type || "StringLiteral" } />),
             value: value
         };
     }
