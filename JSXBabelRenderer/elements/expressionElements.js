@@ -20,7 +20,7 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
 
     static yield(element, props, children) {
         let delegate = typeof props.delegate === 'boolean' ? props.delegate : false;
-        let argument = children.shift() || null;
+        let [ argument = null ] = children;
 
         return {
             ...generateAST(<expression type="YieldExpression" />),
@@ -30,7 +30,7 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
     }
 
     static await(element, props, children) {
-        let argument = children.shift() || null;
+        let [ argument = null ] = children;
 
         return {
             ...generateAST(<expression type="AwaitExpression" />),
@@ -50,7 +50,7 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
     static unary(element, props, children) {
         let operator = typeof props.operator === 'string' ? props.operator : 'typeof';
         let prefix = typeof props.prefix === 'boolean' ? props.prefix : false;
-        let argument = children.shift();
+        let [ argument ] = children;
 
         return {
             ...generateAST(<expression type="UnaryExpression" />),
@@ -63,7 +63,7 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
     static update(element, props, children) {
         let operator = typeof props.operator === 'string' ? props.operator : '--';
         let prefix = typeof props.prefix === 'boolean' ? props.prefix : false;
-        let argument = children.shift();
+        let [ argument ] = children;
 
         return {
             ...generateAST(<expression type="UpdateExpression" />),
@@ -110,8 +110,7 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
     }
 
     static bind(element, props, children) {
-        let callee = children.pop();
-        let object = children.pop() || null;
+        let [ callee, object = null ] = children.reverse();
 
         return {
             ...generateAST(<expression type="BindExpression" />),
