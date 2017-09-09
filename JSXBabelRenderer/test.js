@@ -58,6 +58,56 @@ elementSection('identifier');
 testElement(<identifier>helloWorld</identifier>);
 testElement(<privateName>helloIlluminati</privateName>);
 
+elementSection('statement');
+testElement(
+    <expressionStatement>
+        {3}
+    </expressionStatement>
+);
+testElement(
+    <blockStatement>
+        <expressionStatement>
+            {3}
+        </expressionStatement>
+        <directive>
+            <directiveLiteral>use helloWorld</directiveLiteral>
+        </directive>
+    </blockStatement>
+);
+testElement(<emptyStatement />);
+testElement(<debuggerStatement />);
+testElement(
+    <withStatement>
+        <identifier>World</identifier>
+        <expressionStatement>
+            <call>
+                <identifier>sayHello</identifier>
+            </call>
+        </expressionStatement>
+    </withStatement>
+);
+testElement(
+    <returnStatement>
+        {3}
+    </returnStatement>
+);
+testElement(
+    <labeledStatement>
+        <identifier>codeLocation</identifier>
+        <debuggerStatement />
+    </labeledStatement>
+);
+testElement(
+    <breakStatement>
+        <identifier>codeLocation</identifier>
+    </breakStatement>
+);
+testElement(
+    <continueStatement>
+        <identifier>codeLocation</identifier>
+    </continueStatement>
+);
+
 elementSection('expression');
 testElement(<super />);
 testElement(<import />);
