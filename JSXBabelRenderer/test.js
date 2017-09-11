@@ -107,6 +107,44 @@ testElement(
         <identifier>codeLocation</identifier>
     </continue>
 );
+testElement(
+    <if>
+        {3}
+        <expressionStatement>
+            <call>
+                <identifier>helloWorld</identifier>
+            </call>
+        </expressionStatement>
+        <expressionStatement>
+            <call>
+                <identifier>goodbyeWorld</identifier>
+            </call>
+        </expressionStatement>
+    </if>
+);
+testElement(
+    <switch>
+        <identifier>number</identifier>
+        <case>
+            {3}
+            <debugger />
+        </case>
+        <default>
+            <debugger />
+        </default>
+    </switch>
+)
+testElement(
+    <case>
+        {3}
+        <debugger />
+    </case>
+);
+testElement(
+    <default>
+        <debugger />
+    </default>
+);
 
 elementSection('expression');
 testElement(<super />);

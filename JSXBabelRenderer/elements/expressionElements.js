@@ -120,7 +120,6 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
     }
 
     static conditional(element, props, children) {
-        let operator = typeof props.operator === 'string' ? props.operator : '||';
         let [ test, consequent, alternate ] = children;
 
         return {

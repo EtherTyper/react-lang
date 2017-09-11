@@ -27,18 +27,18 @@ const Statements = (Super = Object) => class BasicElements extends Super {
     }
 
     static empty(element, props, children) {
-        return generateAST(<statement {...props} type="EmptyStatement" />);
+        return generateAST(<statement type="EmptyStatement" />);
     }
 
     static debugger(element, props, children) {
-        return generateAST(<statement {...props} type="DebuggerStatement" />);
+        return generateAST(<statement type="DebuggerStatement" />);
     }
 
     static with(element, props, children) {
         let [ object, body ] = children;
         
         return {
-            ...generateAST(<statement {...props} type="WithStatement" />),
+            ...generateAST(<statement type="WithStatement" />),
             object: object,
             body: body
         };
@@ -48,7 +48,7 @@ const Statements = (Super = Object) => class BasicElements extends Super {
         let [ argument = null ] = children;
         
         return {
-            ...generateAST(<statement {...props} type="ReturnStatement" />),
+            ...generateAST(<statement type="ReturnStatement" />),
             argument: argument
         };
     }
@@ -57,7 +57,7 @@ const Statements = (Super = Object) => class BasicElements extends Super {
         let [ label, body ] = children;
         
         return {
-            ...generateAST(<statement {...props} type="LabeledStatement" />),
+            ...generateAST(<statement type="LabeledStatement" />),
             label: label,
             body: body
         };
@@ -67,7 +67,7 @@ const Statements = (Super = Object) => class BasicElements extends Super {
         let [ label = null ] = children;
         
         return {
-            ...generateAST(<statement {...props} type="BreakStatement" />),
+            ...generateAST(<statement type="BreakStatement" />),
             label: label
         };
     }
@@ -76,9 +76,53 @@ const Statements = (Super = Object) => class BasicElements extends Super {
         let [ label = null ] = children;
         
         return {
-            ...generateAST(<statement {...props} type="ContinueStatement" />),
+            ...generateAST(<statement type="ContinueStatement" />),
             label: label
         };
+    }
+
+    static if(element, props, children) {
+        let [ test, consequent, alternate = null ] = children;
+
+        return {
+            ...generateAST(<statement type="IfStatement" />),
+            test: test,
+            alternate: alternate,
+            consequent: consequent
+        };
+    }
+
+    static switch(element, props, children) {
+        let [ discriminant, ...cases ] = children;
+
+        return {
+            ...generateAST(<statement type="SwitchStatement" />),
+            discriminant: discriminant,
+            cases: cases
+        };
+    }
+
+    static case(element, props, children) {
+        let [ test, ...consequent ] = children;
+
+        if (test.type === 'NullLiteral') {
+            test = null;
+        }
+
+        return {
+            ...generateAST(<node type="SwitchCase" />),
+            test: test,
+            consequent: consequent
+        };
+    }
+
+    static default(element, props, children) {
+        return generateAST(
+            <case>
+                <null />
+                {props.children}
+            </case>
+        );
     }
 }
 
