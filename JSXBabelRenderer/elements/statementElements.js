@@ -15,7 +15,7 @@ const Statements = (Super = Object) => class BasicElements extends Super {
         };
     }
 
-    static blockStatement(element, props, children) {
+    static block(element, props, children) {
         let body = children.filter((child) => child.type !== 'Directive');
         let directives = children.filter((child) => child.type === 'Directive');
 
@@ -26,15 +26,15 @@ const Statements = (Super = Object) => class BasicElements extends Super {
         };
     }
 
-    static emptyStatement(element, props, children) {
+    static empty(element, props, children) {
         return generateAST(<statement {...props} type="EmptyStatement" />);
     }
 
-    static debuggerStatement(element, props, children) {
+    static debugger(element, props, children) {
         return generateAST(<statement {...props} type="DebuggerStatement" />);
     }
 
-    static withStatement(element, props, children) {
+    static with(element, props, children) {
         let [ object, body ] = children;
         
         return {
@@ -44,7 +44,7 @@ const Statements = (Super = Object) => class BasicElements extends Super {
         };
     }
 
-    static returnStatement(element, props, children) {
+    static return(element, props, children) {
         let [ argument = null ] = children;
         
         return {
@@ -53,7 +53,7 @@ const Statements = (Super = Object) => class BasicElements extends Super {
         };
     }
 
-    static labeledStatement(element, props, children) {
+    static label(element, props, children) {
         let [ label, body ] = children;
         
         return {
@@ -63,7 +63,7 @@ const Statements = (Super = Object) => class BasicElements extends Super {
         };
     }
 
-    static breakStatement(element, props, children) {
+    static break(element, props, children) {
         let [ label = null ] = children;
         
         return {
@@ -72,7 +72,7 @@ const Statements = (Super = Object) => class BasicElements extends Super {
         };
     }
 
-    static continueStatement(element, props, children) {
+    static continue(element, props, children) {
         let [ label = null ] = children;
         
         return {

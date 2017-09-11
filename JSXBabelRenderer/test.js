@@ -65,47 +65,47 @@ testElement(
     </expressionStatement>
 );
 testElement(
-    <blockStatement>
+    <block>
         <expressionStatement>
             {3}
         </expressionStatement>
         <directive>
             <directiveLiteral>use helloWorld</directiveLiteral>
         </directive>
-    </blockStatement>
+    </block>
 );
-testElement(<emptyStatement />);
-testElement(<debuggerStatement />);
+testElement(<empty />);
+testElement(<debugger />);
 testElement(
-    <withStatement>
+    <with>
         <identifier>World</identifier>
         <expressionStatement>
             <call>
                 <identifier>sayHello</identifier>
             </call>
         </expressionStatement>
-    </withStatement>
+    </with>
 );
 testElement(
-    <returnStatement>
+    <return>
         {3}
-    </returnStatement>
+    </return>
 );
 testElement(
-    <labeledStatement>
+    <label>
         <identifier>codeLocation</identifier>
-        <debuggerStatement />
-    </labeledStatement>
+        <debugger />
+    </label>
 );
 testElement(
-    <breakStatement>
+    <break>
         <identifier>codeLocation</identifier>
-    </breakStatement>
+    </break>
 );
 testElement(
-    <continueStatement>
+    <continue>
         <identifier>codeLocation</identifier>
-    </continueStatement>
+    </continue>
 );
 
 elementSection('expression');
