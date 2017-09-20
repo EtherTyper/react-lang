@@ -177,6 +177,44 @@ testElement(
         </block>
     </try>
 );
+testElement(
+    <while>
+        {3}
+        <expressionStatement>
+            <call>
+                <identifier>sayHello</identifier>
+            </call>
+        </expressionStatement>
+    </while>
+);
+testElement(
+    <doWhile>
+        <expressionStatement>
+            <call>
+                <identifier>sayHello</identifier>
+            </call>
+        </expressionStatement>
+        {3}
+    </doWhile>
+);
+testElement(
+    <for init={3} test={4} update={5}>
+        <expressionStatement>
+            <call>
+                <identifier>sayHello</identifier>
+            </call>
+        </expressionStatement>
+    </for>
+);
+testElement(
+    <forIn left={3} right={[3, 4, 5]}>
+        <expressionStatement>
+            <call>
+                <identifier>sayHello</identifier>
+            </call>
+        </expressionStatement>
+    </forIn>
+);
 
 elementSection('expression');
 testElement(<super />);

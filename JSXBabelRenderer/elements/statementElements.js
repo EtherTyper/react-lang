@@ -157,6 +157,56 @@ const Statements = (Super = Object) => class BasicElements extends Super {
             body
         }
     }
+
+    static while(element, props, children) {
+        let [ test, body ] = children;
+
+        return {
+            ...generateAST(<statement type="WhileStatement" />),
+            test,
+            body
+        }
+    }
+
+    static doWhile(element, props, children) {
+        let [ body, test ] = children;
+
+        return {
+            ...generateAST(<statement type="DoWhileStatement" />),
+            body,
+            test
+        }
+    }
+
+    static for(element, props, children) {
+        let [ body ] = children;
+
+        let init = props.init ? generateAST(props.init) : null;
+        let test = props.test ? generateAST(props.test) : null;
+        let update = props.update ? generateAST(props.update) : null;
+
+        return {
+            ...generateAST(<statement type="ForStatement" />),
+            init,
+            test,
+            update,
+            body
+        }
+    }
+
+    static forIn(element, props, children) {
+        let [ body ] = children;
+
+        let left = generateAST(props.left || <number />);
+        let right = generateAST(props.right || <number />);
+
+        return {
+            ...generateAST(<statement type="ForInStatement" />),
+            left,
+            right,
+            body
+        }
+    }
 }
 
 export default Statements;

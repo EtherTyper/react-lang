@@ -64,7 +64,26 @@ export function flatten(array) {
     }, []);
 }
 
+const keyGenerator = (function* keyed(start) {
+    let key = start;
+
+    while (true) yield key++;
+})(0)
+
 export function generateASTFromTree(element) {
+    if (Array.isArray(element)) {
+        return generateAST(
+            <arrayExpression>
+                {element.map((element) => {
+                    return {
+                        ...element,
+                        key: keyGenerator.next().value
+                    }
+                })}
+            </arrayExpression>
+        );
+    }
+
     let children = [];
 
     if (Array.isArray(element.props.children)) {
