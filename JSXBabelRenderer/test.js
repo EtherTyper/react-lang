@@ -207,10 +207,11 @@ testElement(
     </for>
 );
 testElement(
-    <forIn left={3} right={[3, 4, 5]}>
+    <forIn left={<identifier>number</identifier>} right={[3, 4, 5]}>
         <expressionStatement>
             <call>
                 <identifier>sayHello</identifier>
+                <identifier>number</identifier>
             </call>
         </expressionStatement>
     </forIn>
@@ -222,13 +223,7 @@ testElement(<import />);
 testElement(<thisExpression />);
 testElement(<yield delegate={true}>{3}</yield>);
 testElement(<await>{3}</await>);
-testElement(
-    <arrayExpression>
-        {3}
-        {4}
-        {5}
-    </arrayExpression>
-);
+testElement([3, 4, 5]);
 testElement(<unary operator="+" prefix={false}>{3}</unary>);
 testElement(
     <update operator="--" prefix={false}>

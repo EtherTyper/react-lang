@@ -1,6 +1,7 @@
 import React from 'react'
 import generate from 'babel-generator'
 import BasicElements from './elements'
+import 'babel-polyfill'
 
 export function reduceToTree(element) {
     if (element instanceof RegExp) {
@@ -64,7 +65,7 @@ export function flatten(array) {
     }, []);
 }
 
-const keyGenerator = (function* keyed(start) {
+export const keyGenerator = (function* keyed(start) {
     let key = start;
 
     while (true) yield key++;
@@ -95,8 +96,6 @@ export function generateASTFromTree(element) {
     return BasicElements[element.type](element, element.props, children);
 }
 
-const generateAST = (element) => generateASTFromTree(reduceToTree(element));
-const render = (element) => generate(generateAST(element)).code;
+export const generateAST = (element) => generateASTFromTree(reduceToTree(element));
+export const render = (element) => generate(generateAST(element)).code;
 export default render;
-
-export { render, generateAST };
