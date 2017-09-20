@@ -11,7 +11,7 @@ const Statements = (Super = Object) => class BasicElements extends Super {
 
         return {
             ...generateAST(<statement type="ExpressionStatement" />),
-            expression: expression
+            expression
         };
     }
 
@@ -21,8 +21,8 @@ const Statements = (Super = Object) => class BasicElements extends Super {
 
         return {
             ...generateAST(<statement type="BlockStatement" />),
-            body: body,
-            directives: directives
+            body,
+            directives
         };
     }
 
@@ -39,8 +39,8 @@ const Statements = (Super = Object) => class BasicElements extends Super {
         
         return {
             ...generateAST(<statement type="WithStatement" />),
-            object: object,
-            body: body
+            object,
+            body
         };
     }
 
@@ -49,7 +49,7 @@ const Statements = (Super = Object) => class BasicElements extends Super {
         
         return {
             ...generateAST(<statement type="ReturnStatement" />),
-            argument: argument
+            argument
         };
     }
 
@@ -58,8 +58,8 @@ const Statements = (Super = Object) => class BasicElements extends Super {
         
         return {
             ...generateAST(<statement type="LabeledStatement" />),
-            label: label,
-            body: body
+            label,
+            body
         };
     }
 
@@ -68,7 +68,7 @@ const Statements = (Super = Object) => class BasicElements extends Super {
         
         return {
             ...generateAST(<statement type="BreakStatement" />),
-            label: label
+            label
         };
     }
 
@@ -77,7 +77,7 @@ const Statements = (Super = Object) => class BasicElements extends Super {
         
         return {
             ...generateAST(<statement type="ContinueStatement" />),
-            label: label
+            label
         };
     }
 
@@ -86,9 +86,9 @@ const Statements = (Super = Object) => class BasicElements extends Super {
 
         return {
             ...generateAST(<statement type="IfStatement" />),
-            test: test,
-            alternate: alternate,
-            consequent: consequent
+            test,
+            alternate,
+            consequent
         };
     }
 
@@ -97,8 +97,8 @@ const Statements = (Super = Object) => class BasicElements extends Super {
 
         return {
             ...generateAST(<statement type="SwitchStatement" />),
-            discriminant: discriminant,
-            cases: cases
+            discriminant,
+            cases
         };
     }
 
@@ -111,8 +111,8 @@ const Statements = (Super = Object) => class BasicElements extends Super {
 
         return {
             ...generateAST(<node type="SwitchCase" />),
-            test: test,
-            consequent: consequent
+            test,
+            consequent
         };
     }
 
@@ -123,6 +123,39 @@ const Statements = (Super = Object) => class BasicElements extends Super {
                 {props.children}
             </case>
         );
+    }
+
+    static throw(element, props, children) {
+        let [ argument ] = children;
+
+        return {
+            ...generateAST(<statement type="ThrowStatement" />),
+            argument
+        }
+    }
+
+    static try(element, props, children) {
+        let [ block ] = children;
+
+        let handler = props.handler ? generateAST(props.handler) : null;
+        let finalizer = props.finalizer ? generateAST(props.finalizer) : null;
+
+        return {
+            ...generateAST(<statement type="TryStatement" />),
+            block,
+            handler,
+            finalizer
+        }
+    }
+
+    static catch(element, props, children) {
+        let [ body, param = null ] = children.reverse();
+
+        return {
+            ...generateAST(<node type="CatchClause" />),
+            param,
+            body
+        }
     }
 }
 

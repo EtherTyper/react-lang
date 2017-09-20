@@ -24,8 +24,8 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
 
         return {
             ...generateAST(<expression type="YieldExpression" />),
-            argument: argument,
-            delegate: delegate
+            argument,
+            delegate
         };
     }
 
@@ -34,7 +34,7 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
 
         return {
             ...generateAST(<expression type="AwaitExpression" />),
-            argument: argument
+            argument
         };
     }
 
@@ -43,7 +43,7 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
 
         return {
             ...generateAST(<expression type="ArrayExpression" />),
-            elements: elements
+            elements
         };
     }
 
@@ -54,9 +54,9 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
 
         return {
             ...generateAST(<expression type="UnaryExpression" />),
-            operator: operator,
-            prefix: prefix,
-            argument: argument
+            operator,
+            prefix,
+            argument
         };
     }
 
@@ -67,9 +67,9 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
 
         return {
             ...generateAST(<expression type="UpdateExpression" />),
-            operator: operator,
-            prefix: prefix,
-            argument: argument
+            operator,
+            prefix,
+            argument
         };
     }
 
@@ -79,9 +79,9 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
 
         return {
             ...generateAST(<expression type="BinaryExpression" />),
-            operator: operator,
-            left: left,
-            right: right
+            operator,
+            left,
+            right
         };
     }
 
@@ -91,9 +91,9 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
 
         return {
             ...generateAST(<expression type="AssignmentExpression" />),
-            operator: operator,
-            left: left,
-            right: right
+            operator,
+            left,
+            right
         };
     }
 
@@ -103,9 +103,9 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
 
         return {
             ...generateAST(<expression type="LogicalExpression" />),
-            operator: operator,
-            left: left,
-            right: right
+            operator,
+            left,
+            right
         };
     }
 
@@ -114,8 +114,8 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
 
         return {
             ...generateAST(<expression type="BindExpression" />),
-            object: object,
-            callee: callee
+            object,
+            callee
         };
     }
 
@@ -124,9 +124,9 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
 
         return {
             ...generateAST(<expression type="ConditionalExpression" />),
-            test: test,
-            alternate: alternate,
-            consequent: consequent
+            test,
+            alternate,
+            consequent
         };
     }
 
@@ -136,9 +136,9 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
 
         return {
             ...generateAST(<expression type={ props.type || "CallExpression" } />),
-            callee: callee,
+            callee,
             arguments: callArguments,
-            optional: optional
+            optional
         };
     }
 
@@ -153,7 +153,7 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
 
         return {
             ...generateAST(<expression type="SequenceExpression" />),
-            expressions: expressions
+            expressions
         };
     }
 }

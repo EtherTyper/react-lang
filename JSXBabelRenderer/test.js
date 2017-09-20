@@ -17,7 +17,7 @@ const functionalElement = (
     </HelloGenerator>
 );
 
-function testElement(element, description) {
+function testElement(element, description = null) {
     description = description || reduceToTree(element).type;
     description = description.charAt(0).toUpperCase() + description.slice(1);
 
@@ -144,6 +144,38 @@ testElement(
     <default>
         <debugger />
     </default>
+);
+testElement(
+    <throw>
+        {3}
+    </throw>
+);
+testElement(
+    <catch>
+        <identifier>error</identifier>
+        <block>
+            <debugger />
+        </block>
+    </catch>
+);
+testElement(
+    <try handler={
+        <catch>
+            <identifier>error</identifier>
+            <block>
+                <debugger />
+            </block>
+        </catch>
+    }>
+        <block>
+            <expressionStatement>
+                <call>
+                    <null />
+                    <identifier>helloWorld</identifier>
+                </call>
+            </expressionStatement>
+        </block>
+    </try>
 );
 
 elementSection('expression');

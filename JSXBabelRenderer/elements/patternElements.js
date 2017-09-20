@@ -11,7 +11,7 @@ const Patterns = (Super = Object) => class BasicElements extends Super {
 
         return {
             ...generateAST(<pattern type="ArrayPattern" />),
-            elements: elements
+            elements
         };
     }
 
@@ -20,7 +20,7 @@ const Patterns = (Super = Object) => class BasicElements extends Super {
 
         return {
             ...generateAST(<pattern type="RestElement" />),
-            argument: argument
+            argument
         }
     }
 
@@ -29,8 +29,8 @@ const Patterns = (Super = Object) => class BasicElements extends Super {
 
         return {
             ...generateAST(<pattern type="AssignmentPattern" />),
-            left: left,
-            right: right
+            left,
+            right
         };
     }
 }

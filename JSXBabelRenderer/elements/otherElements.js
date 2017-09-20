@@ -7,7 +7,7 @@ const Others = (Super = Object) => class BasicElements extends Super {
 
         return {
             ...generateAST(<node type="Decorator" />),
-            expression: expression
+            expression
         };
     }
 
@@ -16,7 +16,7 @@ const Others = (Super = Object) => class BasicElements extends Super {
 
         return {
             ...generateAST(<node type="Directive" />),
-            value: value
+            value
         };
     }
 

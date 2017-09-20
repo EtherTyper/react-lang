@@ -11,8 +11,8 @@ const Nodes = (Super = Object) => class BasicElements extends Super {
         let loc = children.shift() || null;
 
         return {
-            type: type,
-            loc: loc
+            type,
+            loc
         };
     }
 
@@ -22,9 +22,9 @@ const Nodes = (Super = Object) => class BasicElements extends Super {
         let source = children.shift().value || null;
 
         return {
-            source: source,
-            start: start,
-            end: end
+            source,
+            start,
+            end
         };
     }
 
@@ -41,8 +41,8 @@ const Nodes = (Super = Object) => class BasicElements extends Super {
         }
 
         return {
-            line: line,
-            column: column
+            line,
+            column
         };
     }
 }
