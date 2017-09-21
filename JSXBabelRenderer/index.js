@@ -68,7 +68,7 @@ export function flatten(array) {
 export const keyGenerator = (function* keyed(start) {
     let key = start;
 
-    while (true) yield key++;
+    while (true) yield `ReactLang Element ${key++}`;
 })(0)
 
 export function generateASTFromTree(element) {
