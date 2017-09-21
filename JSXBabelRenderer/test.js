@@ -25,7 +25,11 @@ function testElement(element, description = null) {
         console.log(`${description}: ${render(element)}`);
     } catch (exception) {
         process.stdout.write('\u001B[1;31m'); // Red and bold.
-        console.log(`${description}: ${exception.stack}`);
+        if (process.env.DEBUG) {
+            console.log(`${description}: ${exception.stack}`);
+        } else {
+            console.log(`${description}: ${exception}`);
+        }
         process.stdout.write('\u001B[0m'); // Resets font.
         try {
             console.log(`Generated AST for ${description}: ${JSON.stringify(generateAST(element), null, 2)}`);
@@ -46,6 +50,18 @@ function elementSection(description) {
     console.log(`${description} Components`);
     process.stdout.write('\u001B[0m\n'); // Resets font and prints new line.
 }
+
+elementSection('program');
+testElement(
+    <program sourceType="script">
+        <expressionStatement>
+            {3}
+        </expressionStatement>
+        <directive>
+            <directiveLiteral>use helloWorld</directiveLiteral>
+        </directive>
+    </program>
+);
 
 elementSection('literal');
 testElement(/lo+l/g);
@@ -166,6 +182,12 @@ testElement(
                 <debugger />
             </block>
         </catch>
+    }
+    
+    finalizer={
+        <block>
+            <debugger />
+        </block>
     }>
         <block>
             <expressionStatement>
@@ -207,14 +229,24 @@ testElement(
     </for>
 );
 testElement(
-    <forIn left={<identifier>number</identifier>} right={[3, 4, 5]}>
+    <forIn left={<identifier>index</identifier>} right={[3, 4, 5]}>
+        <expressionStatement>
+            <call>
+                <identifier>sayHello</identifier>
+                <identifier>index</identifier>
+            </call>
+        </expressionStatement>
+    </forIn>
+);
+testElement(
+    <forOf left={<identifier>number</identifier>} right={[3, 4, 5]} await>
         <expressionStatement>
             <call>
                 <identifier>sayHello</identifier>
                 <identifier>number</identifier>
             </call>
         </expressionStatement>
-    </forIn>
+    </forOf>
 );
 
 elementSection('expression');
@@ -224,6 +256,17 @@ testElement(<thisExpression />);
 testElement(<yield delegate={true}>{3}</yield>);
 testElement(<await>{3}</await>);
 testElement([3, 4, 5], 'arrayExpression');
+testElement(
+    <objectProperty computed={true}>
+        <decorator>
+            <identifier>
+                greetable
+            </identifier>
+        </decorator>
+        <identifier>hello</identifier>
+        <identifier>world</identifier>
+    </objectProperty>
+);
 testElement(<unary operator="+" prefix={false}>{3}</unary>);
 testElement(
     <update operator="--" prefix={false}>

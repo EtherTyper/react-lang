@@ -201,10 +201,19 @@ const Statements = (Super = Object) => class BasicElements extends Super {
         let right = generateAST(props.right || <number />);
 
         return {
-            ...generateAST(<statement type="ForInStatement" />),
+            ...generateAST(<statement type={props.type || "ForInStatement"} />),
             left,
             right,
             body
+        }
+    }
+
+    static forOf(element, props, children) {
+        let isAwait = props.await || false;
+
+        return {
+            ...generateAST(<forIn {...props} type="ForOfStatement" />),
+            await: isAwait
         }
     }
 }

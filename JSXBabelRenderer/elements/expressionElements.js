@@ -47,6 +47,36 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
         };
     }
 
+    static object(element, props, children) {
+
+    }
+    
+    static objectMember(element, props, children) {
+        let key = props.key;
+        let decorators = props.decorators;
+
+        let computed = typeof props.computed === 'boolean' ? props.computed : false;
+
+        return {
+            ...generateAST(<node {...props} />),
+            key,
+            computed,
+            decorators
+        }
+    }
+
+    static objectProperty(element, props, children) {
+        let [ key, value, ...decorators ] = children;
+
+        let shorthand = typeof props.shorthand === 'boolean' ? props.shorthand : false;
+
+        return {
+            ...generateAST(<objectMember {...props} type="ObjectProperty" key={key} decorators={decorators} />),
+            shorthand,
+            value
+        }
+    }
+
     static unary(element, props, children) {
         let operator = typeof props.operator === 'string' ? props.operator : 'typeof';
         let prefix = typeof props.prefix === 'boolean' ? props.prefix : false;
