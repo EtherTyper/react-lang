@@ -8,11 +8,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "babel-generator": "next",
-    "babel-loader": "^7.1.2",
     "babel-polyfill": "^6.26.0",
-    "babel-preset-env": "next",
-    "babel-preset-react": "next",
-    "babel-preset-stage-0": "next",
     "react": "next"
   },
   "scripts": {
@@ -20,6 +16,9 @@
     "test": "yarn build; DEBUG=true node lib/test.js"
   },
   "devDependencies": {
+    "babel-preset-env": "next",
+    "babel-preset-react": "next",
+    "babel-preset-stage-0": "next",
     "babel-cli": "next",
     "babylon": "next"
   }
