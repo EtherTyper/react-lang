@@ -4,6 +4,8 @@
             "env",
             {
                 "exclude": [
+                    // For some strange reason, the _typeof polyfill is recursive and caused stack RangeErrors.
+                    // Luckily, the only thing it did anyways was make native typeof support Symbol primitives.
                     "transform-es2015-typeof-symbol"
                 ]
             }
