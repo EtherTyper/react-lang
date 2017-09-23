@@ -18,6 +18,10 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
         return generateAST(<expression type="ThisExpression" />);
     }
 
+    static arrowFunction(element, props, children) {
+        
+    }
+
     static yield(element, props, children) {
         let delegate = typeof props.delegate === 'boolean' ? props.delegate : false;
         let [ argument = null ] = children;
@@ -47,7 +51,7 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
         };
     }
 
-    static object(element, props, children) {
+    static objectExpression(element, props, children) {
         let properties = children;
 
         return {

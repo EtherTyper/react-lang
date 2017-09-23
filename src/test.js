@@ -257,7 +257,7 @@ testElement(<yield delegate={true}>{3}</yield>);
 testElement(<await>{3}</await>);
 testElement([3, 4, 5], 'arrayExpression');
 testElement(
-    <object>
+    <objectExpression>
         <objectProperty shorthand={true}>
             <identifier>hello</identifier>
             <identifier>hello</identifier>
@@ -290,7 +290,7 @@ testElement(
                 <debugger />
             </block>
         </objectMethod>
-    </object>
+    </objectExpression>
 )
 testElement(
     <objectProperty shorthand={true}>
