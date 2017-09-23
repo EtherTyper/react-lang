@@ -1,7 +1,7 @@
 # react-lang
 A React renderer to real programs!
 
-Stuff in the `src` folder is being actively worked on. None of it is being 'maintained.'
+Stuff in the `src` folder is being actively worked on. You can see my progress [here](./spec.md).
 
 ### Mr. Rosier: Yes, this is Eli Bradley's project. Please click on the username.
 
