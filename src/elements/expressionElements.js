@@ -19,7 +19,21 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
     }
 
     static arrowFunction(element, props, children) {
-        
+        let [ body ] = props.children.map(generateAST);
+
+        let id = props.id || null;
+        let params = props.params;
+        let async = typeof props.async === 'boolean' ? props.async : false;
+        let expression = typeof props.expression === 'boolean' ? props.expression : false;
+
+        return {
+            // Generator functions can't be defined using arrow function syntax in ECMAScript.
+            // See https://stackoverflow.com/questions/27661306/can-i-use-es6s-arrow-function-syntax-with-generators-arrow-notation.
+            ...generateAST(<function {...props} type="ArrowFunctionExpression" id={id} generator={false} async={async} body={null} />),
+            ...generateAST(<expression {...props} type="ArrowFunctionExpression" />),
+            body,
+            expression
+        }
     }
 
     static yield(element, props, children) {
@@ -117,7 +131,7 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
         let async = typeof props.async === 'boolean' ? props.async : false;
 
         return {
-            ...generateAST(<function {...props} type="FunctionExpression" id={id} generator={true} async={true}>
+            ...generateAST(<function {...props} type="FunctionExpression" id={id} generator={generator} async={async}>
                 {body}
             </function>),
             ...generateAST(<expression {...props} type="FunctionExpression" />)

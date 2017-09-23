@@ -22,7 +22,14 @@ function testElement(element, description = null) {
     description = description.charAt(0).toUpperCase() + description.slice(1);
 
     try {
-        console.log(`${description}: ${render(element)}`);
+        let producedCode = render(element);
+
+        if (!producedCode.includes('\n')) {
+            console.log(`${description}: ${producedCode}`);
+        } else {
+            let formattedCode = '\n  ' + producedCode.split('\n').join('\n  '); // Double space master-race
+            console.log(`${description}: ${formattedCode}`);
+        }
     } catch (exception) {
         process.stdout.write('\u001B[1;31m'); // Red and bold.
         if (process.env.DEBUG) {
@@ -253,6 +260,21 @@ elementSection('expression');
 testElement(<super />);
 testElement(<import />);
 testElement(<thisExpression />);
+testElement(
+    <arrowFunction id={<identifier>helloWorld</identifier>} async={true} expression={false} params={
+        [
+            <arrayPattern>
+                <identifier>hello</identifier>
+                <identifier>world</identifier>
+                <identifier>object</identifier>
+            </arrayPattern>
+        ]
+    }>
+        <block>
+            <debugger />
+        </block>
+    </arrowFunction>
+)
 testElement(<yield delegate={true}>{3}</yield>);
 testElement(<await>{3}</await>);
 testElement([3, 4, 5], 'arrayExpression');
