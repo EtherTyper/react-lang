@@ -1,7 +1,7 @@
 # react-lang
 A React renderer to real programs!
 
-Only the `JSXBabelRenderer` folder is being actively worked on. None of it is being 'maintained.'
+Stuff in the `src` folder is being actively worked on. None of it is being 'maintained.'
 
 ### Mr. Rosier: Yes, this is Eli Bradley's project. Please click on the username.
 
