@@ -19,17 +19,17 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
     }
 
     static arrowFunction(element, props, children) {
-        let [ body ] = props.children.map(generateAST);
+        let [ body ] = children;
 
         let id = props.id || null;
         let params = props.params;
         let async = typeof props.async === 'boolean' ? props.async : false;
-        let expression = typeof props.expression === 'boolean' ? props.expression : false;
+        let expression = body.type !== 'BlockStatement';
 
         return {
             // Generator functions can't be defined using arrow function syntax in ECMAScript.
             // See https://stackoverflow.com/questions/27661306/can-i-use-es6s-arrow-function-syntax-with-generators-arrow-notation.
-            ...generateAST(<function {...props} type="ArrowFunctionExpression" id={id} generator={false} async={async} body={null} />),
+            ...generateAST(<function {...props} type="ArrowFunctionExpression" id={id} generator={false} async={async} body={expression ? null : body} />),
             ...generateAST(<expression {...props} type="ArrowFunctionExpression" />),
             body,
             expression
@@ -200,6 +200,31 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
         };
     }
 
+    static spread(element, props, children) {
+        let [ argument ] = children;
+
+        return {
+            ...generateAST(<node type="SpreadElement" />),
+            argument
+        }
+    }
+
+    static member(element, props, children) {
+        let [ object, property ] = children;
+
+        let computed = typeof props.computed === 'boolean' ? props.computed : false;
+        let optional = typeof props.optional === 'boolean' ? props.optional : null;
+
+        return {
+            ...generateAST(<expression type="MemberExpression" />),
+            ...generateAST(<pattern type="MemberExpression" />),
+            object,
+            property,
+            computed,
+            optional
+        }
+    }
+
     static bind(element, props, children) {
         let [ callee, object = null ] = children.reverse();
 
@@ -246,6 +271,15 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
             ...generateAST(<expression type="SequenceExpression" />),
             expressions
         };
+    }
+
+    static do(element, props, children) {
+        let [ body ] = children;
+
+        return {
+            ...generateAST(<expression type="DoExpression" />),
+            body
+        }
     }
 }
 

@@ -261,7 +261,7 @@ testElement(<super />);
 testElement(<import />);
 testElement(<thisExpression />);
 testElement(
-    <arrowFunction id={<identifier>helloWorld</identifier>} async={true} expression={false} params={
+    <arrowFunction id={<identifier>helloWorld</identifier>} async={true} params={
         [
             <arrayPattern>
                 <identifier>hello</identifier>
@@ -273,8 +273,25 @@ testElement(
         <block>
             <debugger />
         </block>
-    </arrowFunction>
-)
+    </arrowFunction>, 'Block ArrowFunction'
+);
+testElement(
+    <arrowFunction id={<identifier>helloWorld</identifier>} async={true} params={
+        [
+            <arrayPattern>
+                <identifier>hello</identifier>
+                <identifier>world</identifier>
+                <identifier>object</identifier>
+            </arrayPattern>
+        ]
+    }>
+        <call>
+            <identifier>hello</identifier>
+            <identifier>world</identifier>
+            What's up world?
+        </call>
+    </arrowFunction>, 'Expression ArrowFunction'
+);
 testElement(<yield delegate={true}>{3}</yield>);
 testElement(<await>{3}</await>);
 testElement([3, 4, 5], 'arrayExpression');
@@ -312,8 +329,11 @@ testElement(
                 <debugger />
             </block>
         </objectMethod>
+        <spread>
+            <identifier>toExtend</identifier>
+        </spread>
     </objectExpression>
-)
+);
 testElement(
     <objectProperty shorthand={true}>
         <identifier>hello</identifier>
@@ -366,7 +386,7 @@ testElement(
             <debugger />
         </block>
     </functionExpression>
-)
+);
 testElement(<unary operator="+" prefix={false}>{3}</unary>);
 testElement(
     <update operator="--" prefix={false}>
@@ -392,6 +412,17 @@ testElement(
         {4}
     </logical>
 );
+testElement(
+    <spread>
+        <identifier>toExtend</identifier>
+    </spread>
+);
+testElement(
+    <member computed={true} optional={true}>
+        <identifier>world</identifier>
+        <identifier>sayHello</identifier>
+    </member>
+)
 testElement(
     <bind>
         <identifier>world</identifier>
@@ -425,6 +456,21 @@ testElement(
         {4}
         {5}
     </sequence>
+);
+testElement(
+    <do>
+        <block>
+            <if>
+                <identifier>condition</identifier>
+                <expressionStatement>
+                    {3}
+                </expressionStatement>
+                <expressionStatement>
+                    {4}
+                </expressionStatement>
+            </if>
+        </block>
+    </do>
 );
 
 elementSection('pattern');
