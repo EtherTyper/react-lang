@@ -48,17 +48,22 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
     }
 
     static object(element, props, children) {
+        let properties = children;
 
+        return {
+            ...generateAST(<expression type="ObjectExpression" />),
+            properties
+        }
     }
     
     static objectMember(element, props, children) {
-        let key = props.key;
+        let key = props.objectKey;
         let decorators = props.decorators;
 
         let computed = typeof props.computed === 'boolean' ? props.computed : false;
 
         return {
-            ...generateAST(<node {...props} />),
+            ...generateAST(<node type={props.type} />),
             key,
             computed,
             decorators
@@ -66,14 +71,52 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
     }
 
     static objectProperty(element, props, children) {
-        let [ key, value, ...decorators ] = children;
+        let decorators = children.filter((child) => child.type === 'Decorator');
+        let [ key, value ] = children.filter((child) => child.type !== 'Decorator');
 
         let shorthand = typeof props.shorthand === 'boolean' ? props.shorthand : false;
 
         return {
-            ...generateAST(<objectMember {...props} type="ObjectProperty" key={key} decorators={decorators} />),
+            ...generateAST(<objectMember {...props} type="ObjectProperty" objectKey={key} decorators={decorators} />),
             shorthand,
             value
+        }
+    }
+
+    static objectMethod(element, props, children) {
+        let decorators = children.filter((child) => child.type === 'Decorator');
+        let [ key, body ] = props.children.filter((child, index) => children[index].type !== 'Decorator');
+
+        let id = props.id || null;
+        let params = props.params;
+        let generator = typeof props.generator === 'boolean' ? props.generator : false;
+        let async = typeof props.async === 'boolean' ? props.async : false;
+        let kind = props.kind || 'get';
+
+        return {
+            ...generateAST(<objectMember {...props} type="ObjectMethod" objectKey={generateAST(key)} decorators={decorators} />),
+            ...generateAST(
+                <function type="ObjectMethod" id={id} params={params} generator={generator} async={async}>
+                    {body}
+                </function>
+            ),
+            kind
+        }
+    }
+
+    static functionExpression(element, props, children) {
+        let [ body ] = props.children;
+
+        let id = props.id || null;
+        let params = props.params;
+        let generator = typeof props.generator === 'boolean' ? props.generator : false;
+        let async = typeof props.async === 'boolean' ? props.async : false;
+
+        return {
+            ...generateAST(<function {...props} type="FunctionExpression" id={id} generator={true} async={true}>
+                {body}
+            </function>),
+            ...generateAST(<expression {...props} type="FunctionExpression" />)
         }
     }
 

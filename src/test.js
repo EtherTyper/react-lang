@@ -257,6 +257,48 @@ testElement(<yield delegate={true}>{3}</yield>);
 testElement(<await>{3}</await>);
 testElement([3, 4, 5], 'arrayExpression');
 testElement(
+    <object>
+        <objectProperty shorthand={true}>
+            <identifier>hello</identifier>
+            <identifier>hello</identifier>
+        </objectProperty>
+        <objectProperty computed={true}>
+            <decorator>
+                <identifier>
+                    greetable
+                </identifier>
+            </decorator>
+            <identifier>hello</identifier>
+            <identifier>world</identifier>
+        </objectProperty>
+        <objectMethod computed={true} id={<identifier>helloWorld</identifier>} generator={true} async={true} kind="set" params={
+            [
+                <arrayPattern>
+                    <identifier>hello</identifier>
+                    <identifier>world</identifier>
+                    <identifier>object</identifier>
+                </arrayPattern>
+            ]
+        }>
+            <decorator>
+                <identifier>
+                    greetable
+                </identifier>
+            </decorator>
+            <identifier>hello</identifier>
+            <block>
+                <debugger />
+            </block>
+        </objectMethod>
+    </object>
+)
+testElement(
+    <objectProperty shorthand={true}>
+        <identifier>hello</identifier>
+        <identifier>hello</identifier>
+    </objectProperty>, 'Shorthand ObjectProperty'
+);
+testElement(
     <objectProperty computed={true}>
         <decorator>
             <identifier>
@@ -265,8 +307,44 @@ testElement(
         </decorator>
         <identifier>hello</identifier>
         <identifier>world</identifier>
-    </objectProperty>
+    </objectProperty>, 'Computed ObjectProperty'
 );
+testElement(
+    <objectMethod computed={true} id={<identifier>helloWorld</identifier>} generator={true} async={true} kind="set" params={
+        [
+            <arrayPattern>
+                <identifier>hello</identifier>
+                <identifier>world</identifier>
+                <identifier>object</identifier>
+            </arrayPattern>
+        ]
+    }>
+        <decorator>
+            <identifier>
+                greetable
+            </identifier>
+        </decorator>
+        <identifier>hello</identifier>
+        <block>
+            <debugger />
+        </block>
+    </objectMethod>
+);
+testElement(
+    <functionExpression id={<identifier>helloWorld</identifier>} generator={true} async={true} params={
+        [
+            <arrayPattern>
+                <identifier>hello</identifier>
+                <identifier>world</identifier>
+                <identifier>object</identifier>
+            </arrayPattern>
+        ]
+    }>
+        <block>
+            <debugger />
+        </block>
+    </functionExpression>
+)
 testElement(<unary operator="+" prefix={false}>{3}</unary>);
 testElement(
     <update operator="--" prefix={false}>

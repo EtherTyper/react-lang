@@ -7,26 +7,20 @@
   "author": "Eli Bradley",
   "license": "Apache-2.0",
   "dependencies": {
-    "babel-cli": "next",
     "babel-generator": "next",
     "babel-loader": "^7.1.2",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "next",
     "babel-preset-react": "next",
     "babel-preset-stage-0": "next",
-    "babylon": "next",
-    "deku": "next",
-    "react": "next",
-    "react-dom": "next",
-    "react-json-renderer": "^0.5.1",
-    "react-scripts": "1.0.11"
+    "react": "next"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "build-renderer": "babel JSXBabelRenderer -d lib",
-    "test-renderer": "yarn build-renderer; DEBUG=true node lib/test.js"
+    "build": "babel src -d lib",
+    "test": "yarn build; DEBUG=true node lib/test.js"
+  },
+  "devDependencies": {
+    "babel-cli": "next",
+    "babylon": "next"
   }
 }
