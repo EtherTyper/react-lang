@@ -514,7 +514,10 @@ testElement(
         </templateLiteral>
     </taggedTemplate>
 );
-testElement('TemplateElements require information about their parents to generate.', 'TemplateElement');
+
+process.stdout.write('\u001B[1;33m');
+console.log('TemplateElement: These require information about their parents to generate, and therefore cannot be tested individually.');
+process.stdout.write('\u001B[0m');
 
 elementSection('pattern');
 testElement(
