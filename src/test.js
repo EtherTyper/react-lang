@@ -473,6 +473,49 @@ testElement(
     </do>
 );
 
+elementSection('templateLiteral');
+testElement(
+    <templateLiteral>
+        <templateElement>
+            <string>
+                One plus two is
+                {' '}
+            </string>
+        </templateElement>
+        <binary operator='+'>
+            {1}
+            {2}
+        </binary>
+        <templateElement tail={true}>
+            .
+        </templateElement>
+    </templateLiteral>
+);
+testElement(
+    <taggedTemplate>
+        <member>
+            <identifier>String</identifier>
+            <identifier>soRawASkilledVetCouldStillSaveIt</identifier>
+        </member>
+        <templateLiteral>
+            <templateElement>
+                <string>
+                    One plus two is
+                    {' '}
+                </string>
+            </templateElement>
+            <binary operator='+'>
+                {1}
+                {2}
+            </binary>
+            <templateElement tail={true}>
+                .
+            </templateElement>
+        </templateLiteral>
+    </taggedTemplate>
+);
+testElement('TemplateElements require information about their parents to generate.', 'TemplateElement');
+
 elementSection('pattern');
 testElement(
     <assignmentProperty computed={true}>
