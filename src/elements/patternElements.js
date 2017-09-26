@@ -6,8 +6,32 @@ const Patterns = (Super = Object) => class BasicElements extends Super {
         return generateAST(<node {...props} />);
     }
 
+    static assignmentProperty(element, props, children) {
+        let [ key, value ] = children.filter((child) => child.type !== 'Decorator');
+
+        return {
+            ...generateAST(<objectProperty {...props} />),
+            value
+        }
+    }
+
+    static objectPattern(element, props, children) {
+        let properties = children;
+
+        return {
+            ...generateAST(<pattern type="ObjectPattern" />),
+            properties
+        };
+    }
+
     static arrayPattern(element, props, children) {
-        let elements = children;
+        let elements = children.map((child) => do {
+            if (child.type === 'NullLiteral') {
+                null
+            } else {
+                child
+            }
+        });
 
         return {
             ...generateAST(<pattern type="ArrayPattern" />),

@@ -475,9 +475,41 @@ testElement(
 
 elementSection('pattern');
 testElement(
+    <assignmentProperty computed={true}>
+        <decorator>
+            <identifier>
+                greetable
+            </identifier>
+        </decorator>
+        <identifier>hello</identifier>
+        <restElement>
+            <identifier>world</identifier>
+        </restElement>
+    </assignmentProperty>
+);
+testElement(
+    <objectPattern>
+        <assignmentProperty computed={true}>
+            <decorator>
+                <identifier>
+                    greetable
+                </identifier>
+            </decorator>
+            <identifier>hello</identifier>
+            <restElement>
+                <identifier>world</identifier>
+            </restElement>
+        </assignmentProperty>
+        <restElement>
+            <identifier>helloWorld</identifier>
+        </restElement>
+    </objectPattern>
+)
+testElement(
     <arrayPattern>
         <identifier>hello</identifier>
         <identifier>world</identifier>
+        {[null, null, null, null] /* Gotta have dose element-skipping commas */}
         <identifier>object</identifier>
     </arrayPattern>
 );
