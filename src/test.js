@@ -580,6 +580,32 @@ testElement(
     </directive>
 );
 
-// Functional (User-defined) Components
+// Features that I added
 elementSection('special');
-testElement(functionalElement, 'Functional Element');
+testElement(functionalElement, 'Functional Element'); // User-defined components
+
+import('babylon').then(babylon => {
+    testElement(
+        <parse babylon={babylon}>
+            <string>
+                const babel = react = {'{'}
+                    awesome: true
+                }
+            </string>
+        </parse>, 'ParsedElement'
+    );
+
+    testElement(
+        <parse babylon={babylon} handler={
+            (ast) => {
+                return ast.body[0].declarations[0].init
+            }
+        }>
+            <string>
+                const babel = react = {'{'}
+                    awesome: true
+                }
+            </string>
+        </parse>, 'Selective ParsedElement'
+    )
+})

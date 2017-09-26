@@ -16,10 +16,11 @@
     "test": "yarn build; DEBUG=true node lib/test.js"
   },
   "devDependencies": {
+    "babel-cli": "next",
+    "babel-plugin-dynamic-import-node": "^1.1.0",
     "babel-preset-env": "next",
     "babel-preset-react": "next",
     "babel-preset-stage-0": "next",
-    "babel-cli": "next",
     "babylon": "next"
   }
 }
