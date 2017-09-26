@@ -131,9 +131,11 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
         let async = typeof props.async === 'boolean' ? props.async : false;
 
         return {
-            ...generateAST(<function {...props} type="FunctionExpression" id={id} generator={generator} async={async}>
-                {body}
-            </function>),
+            ...generateAST(
+                <function {...props} type="FunctionExpression" id={id} generator={generator} async={async}>
+                    {body}
+                </function>
+            ),
             ...generateAST(<expression {...props} type="FunctionExpression" />)
         }
     }
