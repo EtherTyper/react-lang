@@ -601,6 +601,7 @@ import('babylon').then(babylon => {
     testElement(
         <parse babylon={babylon} handler={
             (ast) => {
+                // The initial value of the first variable declared in the first statement of the program body.
                 return ast.body[0].declarations[0].init
             }
         }>
@@ -610,5 +611,5 @@ import('babylon').then(babylon => {
                 }
             </string>
         </parse>, 'Selective ParsedElement'
-    )
-})
+    );
+});
