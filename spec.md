@@ -37,7 +37,7 @@ These are the core Babylon AST node types.
     - [X] [ForInStatement](#forinstatement)
     - [X] [ForOfStatement](#forofstatement)
 - [ ] [Declarations](#declarations)
-  - [ ] [FunctionDeclaration](#functiondeclaration)
+  - [X] [FunctionDeclaration](#functiondeclaration)
   - [ ] [VariableDeclaration](#variabledeclaration)
     - [ ] [VariableDeclarator](#variabledeclarator)
 - [X] [Misc](#misc)

@@ -256,6 +256,23 @@ testElement(
     </forOf>
 );
 
+elementSection('declarations');
+testElement(
+    <functionDeclaration id={<identifier>helloWorld</identifier>} generator={true} async={true} params={
+        [
+            <arrayPattern>
+                <identifier>hello</identifier>
+                <identifier>world</identifier>
+                <identifier>object</identifier>
+            </arrayPattern>
+        ]
+    }>
+        <block>
+            <debugger />
+        </block>
+    </functionDeclaration>
+);
+
 elementSection('expression');
 testElement(<super />);
 testElement(<import />);
