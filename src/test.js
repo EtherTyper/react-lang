@@ -272,6 +272,28 @@ testElement(
         </block>
     </functionDeclaration>
 );
+testElement(
+    <variableDeclaration kind="const">
+        <variableDeclarator>
+            <identifier>greeting</identifier>
+        </variableDeclarator>
+        <variableDeclarator>
+            <identifier>initializedGreeting</identifier>
+            Hello world!
+        </variableDeclarator>
+    </variableDeclaration>
+);
+testElement(
+    <variableDeclarator>
+        <identifier>greeting</identifier>
+    </variableDeclarator>, 'Empty VariableDeclarator'
+);
+testElement(
+    <variableDeclarator>
+        <identifier>greeting</identifier>
+        Hello world!
+    </variableDeclarator>
+);
 
 elementSection('expression');
 testElement(<super />);
