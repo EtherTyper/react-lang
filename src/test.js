@@ -1,5 +1,8 @@
 import React from 'react';
+import Convert from 'ansi-to-html';
+import intercept from "intercept-stdout";
 import { render, reduceToTree, generateAST } from '.';
+import fs from 'fs';
 
 const HelloGenerator = ({name, children}) => (
     <string>
@@ -57,6 +60,12 @@ function elementSection(description) {
     console.log(`${description} Components`);
     process.stdout.write('\u001B[0m\n'); // Resets font and prints new line.
 }
+
+let testOutput = ''
+
+intercept(function(text) {
+    testOutput += text
+})
 
 elementSection('program');
 testElement(
@@ -651,4 +660,14 @@ import('babylon').then(babylon => {
             </string>
         </parse>, 'Selective ParsedElement'
     );
+    
+    fs.writeFile('./docs/test.html', `
+        <html>
+            <body>
+                <pre style="overflow: auto; padding: 10px 15px; font-family: monospace;">
+                    ${(new Convert()).toHtml(testOutput)}
+                </pre>
+            </body>
+        </html>
+    `, () => {});
 });

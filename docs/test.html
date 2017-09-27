@@ -1,0 +1,204 @@
+
+        <html>
+            <body>
+                <pre style="overflow: auto; padding: 10px 15px; font-family: monospace;">
+                    
+<b><span style="color:#00A">Program Components
+</span></b>
+Program: 
+  "use helloWorld";
+  
+  3;
+
+<b><span style="color:#00A">Literal Components
+</span></b>
+RegExp: /lo+l/g
+Null: null
+String: "Hello world"
+Number: 5
+Boolean: false
+
+<b><span style="color:#00A">Identifier Components
+</span></b>
+Identifier: helloWorld
+<b><span style="color:#A00">PrivateName: ReferenceError: unknown node of type "PrivateName" with constructor "Object"
+    at Generator.print (/Users/ethertyper/Documents/react-lang/node_modules/babel-generator/lib/printer.js:270:13)
+    at Generator.generate (/Users/ethertyper/Documents/react-lang/node_modules/babel-generator/lib/printer.js:56:10)
+    at Generator.generate (/Users/ethertyper/Documents/react-lang/node_modules/babel-generator/lib/index.js:47:40)
+    at exports.default (/Users/ethertyper/Documents/react-lang/node_modules/babel-generator/lib/index.js:8:14)
+    at render (/Users/ethertyper/Documents/react-lang/lib/index.js:144:39)
+    at testElement (/Users/ethertyper/Documents/react-lang/lib/test.js:43:37)
+    at Object.<anonymous> (/Users/ethertyper/Documents/react-lang/lib/test.js:99:1)
+    at Module._compile (module.js:573:30)
+    at Object.Module._extensions..js (module.js:584:10)
+    at Module.load (module.js:507:32)
+</span></b>Generated AST for PrivateName: {
+  "type": "PrivateName",
+  "loc": null,
+  "id": {
+    "type": "Identifier",
+    "loc": null,
+    "name": "helloIlluminati"
+  }
+}
+
+<b><span style="color:#00A">Statement Components
+</span></b>
+ExpressionStatement: 3;
+Block: 
+  {
+    "use helloWorld";
+  
+    3;
+  }
+Empty: ;
+Debugger: debugger;
+With: with (World) sayHello();
+Return: return 3;
+Label: codeLocation: debugger;
+Break: break codeLocation;
+Continue: continue codeLocation;
+If: if (3) helloWorld();else goodbyeWorld();
+Switch: 
+  switch (number) {
+    case 3:
+      debugger;
+  
+    default:
+      debugger;
+  }
+Case: 
+  case 3:
+    debugger;
+Default: 
+  default:
+    debugger;
+Throw: throw 3;
+Catch: 
+  catch (error) {
+    debugger;
+  }
+Try: 
+  try {
+    null(helloWorld);
+  } catch (error) {
+    debugger;
+  } finally {
+    debugger;
+  }
+While: while (3) sayHello();
+DoWhile: do sayHello(); while (3);
+For: for (3; 4; 5) sayHello();
+ForIn: for (index in [3, 4, 5]) sayHello(index);
+ForOf: for await (number of [3, 4, 5]) sayHello(number);
+
+<b><span style="color:#00A">Declarations Components
+</span></b>
+FunctionDeclaration: 
+  async function* helloWorld([hello, world, object]) {
+    debugger;
+  }
+VariableDeclaration: 
+  const greeting,
+        initializedGreeting = "Hello world!";
+Empty VariableDeclarator: greeting
+VariableDeclarator: greeting = "Hello world!"
+
+<b><span style="color:#00A">Expression Components
+</span></b>
+Super: super
+Import: import
+ThisExpression: this
+Block ArrowFunction: 
+  async ([hello, world, object]) => {
+    debugger;
+  }
+Expression ArrowFunction: async ([hello, world, object]) => hello(world, "What's up world?")
+Yield: yield* 3
+Await: await 3
+ArrayExpression: [3, 4, 5]
+ObjectExpression: 
+  {
+    hello,
+    @greetable
+    [hello]: world,
+  
+    @greetable
+    set async [hello]([hello, world, object]) {
+      debugger;
+    },
+  
+    ...toExtend
+  }
+Shorthand ObjectProperty: hello
+Computed ObjectProperty: 
+  @greetable
+  [hello]: world
+ObjectMethod: 
+  @greetable
+  set async [hello]([hello, world, object]) {
+    debugger;
+  }
+FunctionExpression: 
+  async function* helloWorld([hello, world, object]) {
+    debugger;
+  }
+Unary: +3
+Update: helloWorld--
+Binary: 3 === 4
+AssignmentExpression: helloWorld >>>= 4
+Logical: 3 || 4
+Spread: ...toExtend
+Member: world?.[sayHello]
+Bind: world::sayHello
+Conditional: 3 ? 4 : 5
+Call: hello?.(world, "What's up world?")
+New: new Hello(world, "What's up world?")
+Sequence: 3, 4, 5
+Do: 
+  do {
+    if (condition) 3;else 4;
+  }
+
+<b><span style="color:#00A">TemplateLiteral Components
+</span></b>
+TemplateLiteral: `One plus two is ${1 + 2}.`
+TaggedTemplate: String.soRawASkilledVetCouldStillSaveIt`One plus two is ${1 + 2}.`
+<b><span style="color:#A50">TemplateElement: These require information about their parents to generate, and therefore cannot be tested individually.
+</span></b>
+<b><span style="color:#00A">Pattern Components
+</span></b>
+AssignmentProperty: 
+  @greetable
+  [hello]: ...world
+ObjectPattern: 
+  {
+    @greetable
+    [hello]: ...world,
+    ...helloWorld
+  }
+ArrayPattern: [hello, world,,,,, object]
+RestElement: ...helloWorld
+AssignmentPattern: helloWorld = 4
+
+<b><span style="color:#00A">Miscellaneous Components
+</span></b>
+Decorator: @helloWorld
+Directive: "use helloWorld";
+
+<b><span style="color:#00A">Special Components
+</span></b>
+Functional Element: "Hello Linda! Yo! Hello Bob!"
+ParsedElement: 
+  const babel = react = {
+    awesome: true
+  };
+Selective ParsedElement: 
+  react = {
+    awesome: true
+  }
+
+                </pre>
+            </body>
+        </html>
+    
