@@ -638,10 +638,8 @@ elementSection('special');
 testElement(functionalElement, 'Functional Element'); // User-defined components
 
 (async function() {
-    const babylon = await import('babylon');
-
     testElement(
-        <parse babylon={babylon}>
+        <parse babylon={await import('babylon')}>
             <string>
                 const babel = react = {'{'}
                     awesome: true
@@ -651,7 +649,7 @@ testElement(functionalElement, 'Functional Element'); // User-defined components
     );
 
     testElement(
-        <parse babylon={babylon} handler={
+        <parse babylon={await import('babylon')} handler={
             (ast) => {
                 // The initial value of the first variable declared in the first statement of the program body.
                 return ast.body[0].declarations[0].init
