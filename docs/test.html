@@ -84,7 +84,7 @@ Try:
   }
 While: while (3) sayHello();
 DoWhile: do sayHello(); while (3);
-For: for (3; 4; 5) sayHello();
+For: for (let i = 0; i <= 10; i++) sayHello();
 ForIn: for (index in [3, 4, 5]) sayHello(index);
 ForOf: for await (number of [3, 4, 5]) sayHello(number);
 
@@ -184,6 +184,19 @@ Directive: "use helloWorld";
 
 <b><span style="color:#00A">Class Components
 </span></b>
+ClassBody: 
+  {
+    @greetable
+    *constructor([hello, world, object]) {
+      debugger;
+    }
+  
+    @greetable
+    static get async [helloWorld]([hello, world, object]) {
+      debugger;
+    }
+  
+  }
 Constructor ClassMethod: 
   @greetable
   *constructor([hello, world, object]) {

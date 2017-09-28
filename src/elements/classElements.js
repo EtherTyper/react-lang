@@ -2,6 +2,15 @@ import React from 'react';
 import { generateAST } from '..';
 
 const Classes = (Super = Object) => class BasicElements extends Super {
+    static classBody(element, props, children) {
+        let body = children;
+
+        return {
+            ...generateAST(<node type="ClassBody" />),
+            body
+        }
+    }
+
     static classMethod(element, props, children) {
         let decorators = children.filter((child) => child.type === 'Decorator');
         let [ key, body ] = props.children.filter((child, index) => children[index].type !== 'Decorator');

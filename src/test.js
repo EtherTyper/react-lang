@@ -238,7 +238,27 @@ testElement(
     </doWhile>
 );
 testElement(
-    <for init={3} test={4} update={5}>
+    <for init={
+        <variableDeclaration>
+            <variableDeclarator>
+                <identifier>i</identifier>
+                {0}
+            </variableDeclarator>
+        </variableDeclaration>
+    }
+    
+    test={
+        <binary operator="<=">
+            <identifier>i</identifier>
+            {10}
+        </binary>
+    }
+    
+    update={
+        <update operator="++" prefix={false}>
+            <identifier>i</identifier>
+        </update>
+    }>
         <expressionStatement>
             <call>
                 <identifier>sayHello</identifier>
@@ -441,7 +461,6 @@ testElement(<unary operator="+" prefix={false}>{3}</unary>);
 testElement(
     <update operator="--" prefix={false}>
         <identifier>helloWorld</identifier>
-        {4}
     </update>
 );
 testElement(
@@ -634,6 +653,48 @@ testElement(
 );
 
 elementSection('class');
+testElement(
+    <classBody>
+        <classMethod id={<identifier>constructor</identifier>} generator={true} kind="constructor" params={
+            [
+                <arrayPattern>
+                    <identifier>hello</identifier>
+                    <identifier>world</identifier>
+                    <identifier>object</identifier>
+                </arrayPattern>
+            ]
+        }>
+            <decorator>
+                <identifier>
+                    greetable
+                </identifier>
+            </decorator>
+            <identifier>constructor</identifier>
+            <block>
+                <debugger />
+            </block>
+        </classMethod>
+        <classMethod id={<identifier>helloWorld</identifier>} computed={true} static={true} async={true} kind="get" params={
+            [
+                <arrayPattern>
+                    <identifier>hello</identifier>
+                    <identifier>world</identifier>
+                    <identifier>object</identifier>
+                </arrayPattern>
+            ]
+        }>
+            <decorator>
+                <identifier>
+                    greetable
+                </identifier>
+            </decorator>
+            <identifier>helloWorld</identifier>
+            <block>
+                <debugger />
+            </block>
+        </classMethod>
+    </classBody>
+)
 testElement(
     <classMethod id={<identifier>constructor</identifier>} generator={true} kind="constructor" params={
         [
