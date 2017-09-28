@@ -669,9 +669,18 @@ testElement(functionalElement, 'Functional Element'); // User-defined components
         ReactDOMServer.renderToStaticMarkup(
             <html>
                 <body>
-                    <pre style={{overflow: 'auto', padding: '10px 15px', fontFamily: 'monospace'}}
-                    
-                    dangerouslySetInnerHTML={{__html: (new Convert()).toHtml(testOutput)}} />
+                    <pre style={{overflow: 'auto', padding: '10px 15px', fontFamily: 'monospace'}}>
+                        <h1>
+                            Complete List of React-Lang Components
+                        </h1>
+                        <h3>
+                            NOTE: This is just the compiled output. To see the JSX code used to construct <br />
+                            these elements, please see src/test.js. To see the current progress and what <br />
+                            JavaScript features I've yet to implement, see the checklist in spec.md.
+                        </h3>
+
+                        <div dangerouslySetInnerHTML={{__html: (new Convert()).toHtml(testOutput)}} />
+                    </pre>
                 </body>
             </html>
         )
