@@ -267,7 +267,7 @@ testElement(
     </forOf>
 );
 
-elementSection('declarations');
+elementSection('declaration');
 testElement(
     <functionDeclaration id={<identifier>helloWorld</identifier>} generator={true} async={true} params={
         [
@@ -631,6 +631,50 @@ testElement(
     <directive>
         <directiveLiteral>use helloWorld</directiveLiteral>
     </directive>
+);
+
+elementSection('class');
+testElement(
+    <classMethod id={<identifier>constructor</identifier>} generator={true} kind="init" params={
+        [
+            <arrayPattern>
+                <identifier>hello</identifier>
+                <identifier>world</identifier>
+                <identifier>object</identifier>
+            </arrayPattern>
+        ]
+    }>
+        <decorator>
+            <identifier>
+                greetable
+            </identifier>
+        </decorator>
+        <identifier>constructor</identifier>
+        <block>
+            <debugger />
+        </block>
+    </classMethod>, 'Constructor ClassMethod'
+);
+testElement(
+    <classMethod id={<identifier>helloWorld</identifier>} computed={true} static={true} async={true} kind="get" params={
+        [
+            <arrayPattern>
+                <identifier>hello</identifier>
+                <identifier>world</identifier>
+                <identifier>object</identifier>
+            </arrayPattern>
+        ]
+    }>
+        <decorator>
+            <identifier>
+                greetable
+            </identifier>
+        </decorator>
+        <identifier>helloWorld</identifier>
+        <block>
+            <debugger />
+        </block>
+    </classMethod>, 'ClassMethod'
 );
 
 // Features that I added

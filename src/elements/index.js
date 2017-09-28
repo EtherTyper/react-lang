@@ -9,13 +9,15 @@ import Identifiers from './identifierElements'
 import Others from './otherElements'
 import Statements from './statementElements'
 import Declarations from './declarationElements'
-import Parser from './parserElement'
+import Classes from './classElements'
+import Parser from './parserElements'
 
 const ElementTypes = [ 
     Nodes,      Programs,     Functions, 
     Patterns,   Expressions,  Templates,
     Literals,   Identifiers,  Others, 
-    Statements, Declarations, Parser
+    Statements, Declarations, Classes,
+    Parser
 ]
 const BasicElements = ElementTypes.reduce((accumulator, CurrentClass) => CurrentClass(accumulator), Object)
 
