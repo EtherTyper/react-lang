@@ -2,6 +2,8 @@ import React from 'react';
 import Convert from 'ansi-to-html';
 import intercept from "intercept-stdout";
 import { render, reduceToTree, generateAST } from '.';
+import ReactDOMServer from 'react-dom/server'
+import { promisify } from 'util';
 import fs from 'fs';
 
 const HelloGenerator = ({name, children}) => (
@@ -635,7 +637,9 @@ testElement(
 elementSection('special');
 testElement(functionalElement, 'Functional Element'); // User-defined components
 
-import('babylon').then(babylon => {
+(async function() {
+    const babylon = await import('babylon');
+
     testElement(
         <parse babylon={babylon}>
             <string>
@@ -661,13 +665,15 @@ import('babylon').then(babylon => {
         </parse>, 'Selective ParsedElement'
     );
     
-    fs.writeFile('./docs/test.html', `
-        <html>
-            <body>
-                <pre style="overflow: auto; padding: 10px 15px; font-family: monospace;">
-                    ${(new Convert()).toHtml(testOutput)}
-                </pre>
-            </body>
-        </html>
-    `, () => {});
-});
+    await promisify(fs.writeFile)('./docs/test.html', 
+        ReactDOMServer.renderToStaticMarkup(
+            <html>
+                <body>
+                    <pre style={{overflow: 'auto', padding: '10px 15px', fontFamily: 'monospace'}}
+                    
+                    dangerouslySetInnerHTML={{__html: (new Convert()).toHtml(testOutput)}} />
+                </body>
+            </html>
+        )
+    );
+})();

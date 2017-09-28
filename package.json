@@ -23,6 +23,7 @@
     "babel-preset-react": "next",
     "babel-preset-stage-0": "next",
     "babylon": "next",
-    "intercept-stdout": "^0.1.2"
+    "intercept-stdout": "^0.1.2",
+    "react-dom": "^16.0.0"
   }
 }
