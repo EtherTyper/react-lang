@@ -12,7 +12,10 @@ const Classes = (Super = Object) => class BasicElements extends Super {
         let async = typeof props.async === 'boolean' ? props.async : false;
         let computed = typeof props.computed === 'boolean' ? props.computed : false;
         let isStatic = typeof props.static === 'boolean' ? props.static : false;
-        let kind = props.kind || 'get';
+
+        // TODO: Once babel-generator uses 'constructor' instead of 'init', like their AST specification
+        // suggests they do, remove the first part of this line. Babel is (awesomely) always on the run...
+        let kind = props.kind === 'constructor' ? 'init' : props.kind || 'get';
         
         return {
             ...generateAST(

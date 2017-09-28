@@ -635,7 +635,7 @@ testElement(
 
 elementSection('class');
 testElement(
-    <classMethod id={<identifier>constructor</identifier>} generator={true} kind="init" params={
+    <classMethod id={<identifier>constructor</identifier>} generator={true} kind="constructor" params={
         [
             <arrayPattern>
                 <identifier>hello</identifier>
