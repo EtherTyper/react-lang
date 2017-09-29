@@ -1,5 +1,5 @@
 # react-lang
-###### A React renderer to real programs!
+### A React renderer to real programs!
 
 DO YOU CONSIDER YOURSELF A MASTER PROGRAMMER? BUT ARE YOU DISCOURAGED BY THE FACT THAT YOU ONLY KNOW BASIC HTML? WELL THAN I HAVE THE PROJECT FOR YOU! NOW YOU CAN, WITH THE SIMPLE, CONCISE, AND FAMILIAR SYNTAX OF JSX, YOU CAN CODE JS CONSTRUCTS LIKE:
 
@@ -36,7 +36,7 @@ update={
 </for>
 ```
 
-=> REACT-LANG => BABEL-GENERATOR =>
+COMPILES DOWN TO
 
 ```js
 for (let i = 0; i <= 10; i++) sayHello();
@@ -100,7 +100,7 @@ for (let i = 0; i <= 10; i++) sayHello();
 </classDeclaration>
 ```
 
-=> REACT-LANG => BABEL-GENERATOR =>
+COMPILES DOWN TO
 
 ```js
 @greetable
@@ -119,6 +119,8 @@ class Greeter extends AbstractGreeter {
 }
 ```
 </details>
+
+######
 
 Stuff in the `src` folder is being actively worked on. You can see my progress [here](./spec.md).
 
