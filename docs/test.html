@@ -222,6 +222,21 @@ ClassDeclaration:
   
     static [hello] = world;
   }
+ClassExpression: 
+  @greetable
+  class Greeter extends AbstractGreeter {
+    @greetable
+    *constructor([hello, world, object]) {
+      debugger;
+    }
+  
+    @greetable
+    static get async [helloWorld]([hello, world, object]) {
+      debugger;
+    }
+  
+    static [hello] = world;
+  }
 
 <b><span style="color:#00A">Special Components
 </span></b>

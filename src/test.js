@@ -808,7 +808,59 @@ testElement(
         </classBody>
     </classDeclaration>
 );
-
+testElement(
+    <classExpression id={<identifier>Greeter</identifier>} superClass={<identifier>AbstractGreeter</identifier>}>
+        <decorator>
+            <identifier>
+                greetable
+            </identifier>
+        </decorator>
+        <classBody>
+            <classMethod id={<identifier>constructor</identifier>} generator={true} kind="constructor" params={
+                [
+                    <arrayPattern>
+                        <identifier>hello</identifier>
+                        <identifier>world</identifier>
+                        <identifier>object</identifier>
+                    </arrayPattern>
+                ]
+            }>
+                <decorator>
+                    <identifier>
+                        greetable
+                    </identifier>
+                </decorator>
+                <identifier>constructor</identifier>
+                <block>
+                    <debugger />
+                </block>
+            </classMethod>
+            <classMethod id={<identifier>helloWorld</identifier>} computed={true} static={true} async={true} kind="get" params={
+                [
+                    <arrayPattern>
+                        <identifier>hello</identifier>
+                        <identifier>world</identifier>
+                        <identifier>object</identifier>
+                    </arrayPattern>
+                ]
+            }>
+                <decorator>
+                    <identifier>
+                        greetable
+                    </identifier>
+                </decorator>
+                <identifier>helloWorld</identifier>
+                <block>
+                    <debugger />
+                </block>
+            </classMethod>
+            <classProperty static={true} computed={true}>
+                <identifier>hello</identifier>
+                <identifier>world</identifier>
+            </classProperty>
+        </classBody>
+    </classExpression>
+);
 
 // Features that I added
 elementSection('special');

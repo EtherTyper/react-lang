@@ -77,6 +77,13 @@ const Classes = (Super = Object) => class BasicElements extends Super {
             ...generateAST(<declaration type="ClassDeclaration" />)
         }
     }
+
+    static classExpression(element, props, children) {
+        return {
+            ...generateAST(<class {...props} type="ClassExpression" />),
+            ...generateAST(<expression type="ClassExpression" />)
+        }
+    }
 }
 
 export default Classes;
