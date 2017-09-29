@@ -89,10 +89,14 @@ const Expressions = (Super = Object) => class BasicElements extends Super {
     }
 
     static objectProperty(element, props, children) {
+        let shorthand = typeof props.shorthand === 'boolean' ? props.shorthand : false;
+
         let decorators = children.filter((child) => child.type === 'Decorator');
         let [ key, value ] = children.filter((child) => child.type !== 'Decorator');
 
-        let shorthand = typeof props.shorthand === 'boolean' ? props.shorthand : false;
+        if (shorthand && !value) {
+            value = key;
+        }
 
         return {
             ...generateAST(<objectMember {...props} type="ObjectProperty" objectKey={key} decorators={decorators} />),

@@ -152,7 +152,6 @@ DO YOU CONSIDER YOURSELF A MASTER PROGRAMMER? BUT ARE YOU DISCOURAGED BY THE FAC
     <objectExpression>
         <objectProperty shorthand={true}>
             <identifier>hello</identifier>
-            <identifier>hello</identifier>
         </objectProperty>
         <objectProperty computed={true}>
             <decorator>

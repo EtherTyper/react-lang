@@ -376,7 +376,6 @@ testElement(
     <objectExpression>
         <objectProperty shorthand={true}>
             <identifier>hello</identifier>
-            <identifier>hello</identifier>
         </objectProperty>
         <objectProperty computed={true}>
             <decorator>
@@ -413,7 +412,6 @@ testElement(
 );
 testElement(
     <objectProperty shorthand={true}>
-        <identifier>hello</identifier>
         <identifier>hello</identifier>
     </objectProperty>, 'Shorthand ObjectProperty'
 );
