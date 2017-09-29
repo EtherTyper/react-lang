@@ -888,6 +888,12 @@ testElement(
         </classBody>
     </classExpression>
 );
+testElement(
+    <metaProperty>
+        <identifier>hello</identifier>
+        <identifier>world</identifier>
+    </metaProperty>
+);
 
 // Features that I added
 elementSection('special');

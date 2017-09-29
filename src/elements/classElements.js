@@ -122,6 +122,16 @@ const Classes = (Super = Object) => class BasicElements extends Super {
             ...generateAST(<expression type="ClassExpression" />)
         }
     }
+
+    static metaProperty(element, props, children) {
+        let [ meta, property ] = children;
+
+        return {
+            ...generateAST(<expression type="MetaProperty" />),
+            meta,
+            property
+        }
+    }
 }
 
 export default Classes;
