@@ -747,13 +747,40 @@ testElement(
         <block>
             <debugger />
         </block>
-    </classMethod>, 'ClassMethod'
+    </classMethod>
+);
+testElement(
+    <classPrivateMethod id={<privateName>helloWorld</privateName>} generator={true} static={true} async={true} kind="get" params={
+        [
+            <arrayPattern>
+                <identifier>hello</identifier>
+                <identifier>world</identifier>
+                <identifier>object</identifier>
+            </arrayPattern>
+        ]
+    }>
+        <decorator>
+            <identifier>
+                greetable
+            </identifier>
+        </decorator>
+        <identifier>helloWorld</identifier>
+        <block>
+            <debugger />
+        </block>
+    </classPrivateMethod>
 );
 testElement(
     <classProperty static={true} computed={true}>
         <identifier>hello</identifier>
         <identifier>world</identifier>
     </classProperty>
+);
+testElement(
+    <classPrivateProperty static={true}>
+        <privateName>hello</privateName>
+        <identifier>world</identifier>
+    </classPrivateProperty>
 );
 testElement(
     <classDeclaration id={<identifier>Greeter</identifier>} superClass={<identifier>AbstractGreeter</identifier>}>

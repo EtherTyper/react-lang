@@ -56,6 +56,31 @@ const Classes = (Super = Object) => class BasicElements extends Super {
         }
     }
 
+    static classPrivateMethod(element, props, children) {
+        let decorators = children.filter((child) => child.type === 'Decorator');
+        let [ key, body ] = props.children.filter((child, index) => children[index].type !== 'Decorator');
+
+        let id = props.id || null;
+        let params = props.params;
+        let generator = typeof props.generator === 'boolean' ? props.generator : false;
+        let async = typeof props.async === 'boolean' ? props.async : false;
+        let isStatic = typeof props.static === 'boolean' ? props.static : false;
+
+        let kind = props.kind || 'get';
+        
+        return {
+            ...generateAST(
+                <function type="ClassPrivateMethod" id={id} params={params} generator={generator} async={async}>
+                    {body}
+                </function>
+            ),
+            key: generateAST(key),
+            kind,
+            static: isStatic,
+            decorators
+        }
+    }
+
     static classProperty(element, props, children) {
         let [ key, value ] = children;
 
@@ -68,6 +93,19 @@ const Classes = (Super = Object) => class BasicElements extends Super {
             value,
             static: isStatic,
             computed
+        }
+    }
+
+    static classPrivateProperty(element, props, children) {
+        let [ key, value ] = children;
+
+        let isStatic = typeof props.static === 'boolean' ? props.static : false;
+
+        return {
+            ...generateAST(<node type="ClassProperty" />),
+            key,
+            value,
+            static: isStatic
         }
     }
 
