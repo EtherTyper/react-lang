@@ -4,7 +4,7 @@
 DO YOU CONSIDER YOURSELF A MASTER PROGRAMMER? BUT ARE YOU DISCOURAGED BY THE FACT THAT YOU ONLY KNOW BASIC HTML? WELL THAN I HAVE THE PROJECT FOR YOU! NOW, WITH THE SIMPLE, CONCISE, AND FAMILIAR SYNTAX OF JSX, YOU CAN EASILY PROGRAM JAVASCRIPT CONSTRUCTS LIKE:
 
 -   <details>
-    <summary>FOR LOOPS</summary>
+    <summary>LOOPS</summary>
 
     ```jsx
     <for init={
@@ -115,6 +115,93 @@ DO YOU CONSIDER YOURSELF A MASTER PROGRAMMER? BUT ARE YOU DISCOURAGED BY THE FAC
       }
 
       static [hello] = world;
+    }
+    ```
+    </details>
+-   <details>
+    <summary>FUNCTIONS</summary>
+    
+    ```jsx
+    <arrowFunction id={<identifier>helloWorld</identifier>} async={true} params={
+        [
+            <arrayPattern>
+                <identifier>hello</identifier>
+                <identifier>world</identifier>
+                <identifier>object</identifier>
+            </arrayPattern>
+        ]
+    }>
+        <block>
+            <debugger />
+        </block>
+    </arrowFunction>
+    ```
+
+    COMPILES DOWN TO
+
+    ```js
+    async ([hello, world, object]) => {
+      debugger;
+    }
+    ```
+    </details>
+-   <details>
+    <summary>OBJECTS</summary>
+    
+    ```jsx
+    <objectExpression>
+        <objectProperty shorthand={true}>
+            <identifier>hello</identifier>
+            <identifier>hello</identifier>
+        </objectProperty>
+        <objectProperty computed={true}>
+            <decorator>
+                <identifier>
+                    greetable
+                </identifier>
+            </decorator>
+            <identifier>hello</identifier>
+            <identifier>world</identifier>
+        </objectProperty>
+        <objectMethod computed={true} id={<identifier>helloWorld</identifier>} generator={true} async={true} kind="set" params={
+            [
+                <arrayPattern>
+                    <identifier>hello</identifier>
+                    <identifier>world</identifier>
+                    <identifier>object</identifier>
+                </arrayPattern>
+            ]
+        }>
+            <decorator>
+                <identifier>
+                    greetable
+                </identifier>
+            </decorator>
+            <identifier>hello</identifier>
+            <block>
+                <debugger />
+            </block>
+        </objectMethod>
+        <spread>
+            <identifier>toExtend</identifier>
+        </spread>
+    </objectExpression>
+    ```
+
+    COMPILES DOWN TO
+
+    ```js
+    {
+      hello,
+      @greetable
+      [hello]: world,
+
+      @greetable
+      set async [hello]([hello, world, object]) {
+        debugger;
+      },
+
+      ...toExtend
     }
     ```
     </details>
