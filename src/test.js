@@ -592,7 +592,8 @@ testElement(
 );
 
 process.stdout.write('\u001B[1;33m');
-console.log('TemplateElement: These require information about their parents to generate, and therefore cannot be tested individually.');
+console.log(`TemplateElement: These require information about their parents${'\n'
+            }to generate, and therefore cannot be tested individually.`);
 process.stdout.write('\u001B[0m');
 
 elementSection('pattern');
