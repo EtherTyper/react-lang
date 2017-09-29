@@ -4,7 +4,9 @@ import intercept from "intercept-stdout";
 import { render, reduceToTree, generateAST } from '.';
 import ReactDOMServer from 'react-dom/server'
 import { promisify } from 'util';
+import cleanStacktrace from 'clean-stacktrace';
 import fs from 'fs';
+import path from 'path';
 
 const HelloGenerator = ({name, children}) => (
     <string>
@@ -38,7 +40,12 @@ function testElement(element, description = null) {
     } catch (exception) {
         process.stdout.write('\u001B[1;31m'); // Red and bold.
         if (process.env.DEBUG) {
-            console.log(`${description}: ${exception.stack}`);
+            const stack = cleanStacktrace(exception.stack, (line) => {
+                const paths = /.*\((.*)\).?/.exec(line) || []
+                return paths[1] ? line.replace(paths[1], path.relative(process.cwd(), paths[1])) : line
+            })
+
+            console.log(`${description}: ${stack}`);
         } else {
             console.log(`${description}: ${exception}`);
         }

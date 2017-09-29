@@ -990,6 +990,12 @@ chokidar@^1.6.1:
   optionalDependencies:
     fsevents "^1.0.0"
 
+clean-stacktrace@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/clean-stacktrace/-/clean-stacktrace-1.1.0.tgz#8b8cdc87f640daaba9c595ab6edb897b63b0ce33"
+  dependencies:
+    stack-utils-node-internals "^1.0.1"
+
 co@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
@@ -2049,6 +2055,10 @@ sshpk@^1.7.0:
     ecc-jsbn "~0.1.1"
     jsbn "~0.1.0"
     tweetnacl "~0.14.0"
+
+stack-utils-node-internals@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/stack-utils-node-internals/-/stack-utils-node-internals-1.0.1.tgz#ab4a8a469b6cbec72b0bfb589df5e28b1d12281f"
 
 string-width@^1.0.1, string-width@^1.0.2:
   version "1.0.2"
