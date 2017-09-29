@@ -2,6 +2,22 @@ import React from 'react';
 import { generateAST } from '..';
 
 const Classes = (Super = Object) => class BasicElements extends Super {
+    static class(element, props, children) {
+        let body = children.find((child) => child.type === 'ClassBody');
+        let decorators = children.filter((child) => child.type === 'Decorator');
+
+        let id = generateAST(props.id || null);
+        let superClass = generateAST(props.superClass || null);
+
+        return {
+            ...generateAST(<node {...props} />),
+            id,
+            superClass,
+            body,
+            decorators
+        }
+    }
+
     static classBody(element, props, children) {
         let body = children;
 
@@ -37,6 +53,28 @@ const Classes = (Super = Object) => class BasicElements extends Super {
             computed,
             static: isStatic,
             decorators
+        }
+    }
+
+    static classProperty(element, props, children) {
+        let [ key, value ] = children;
+
+        let isStatic = typeof props.static === 'boolean' ? props.static : false;
+        let computed = typeof props.computed === 'boolean' ? props.computed : false;
+
+        return {
+            ...generateAST(<node type="ClassProperty" />),
+            key,
+            value,
+            static: isStatic,
+            computed
+        }
+    }
+
+    static classDeclaration(element, props, children) {
+        return {
+            ...generateAST(<class {...props} type="ClassDeclaration" />),
+            ...generateAST(<declaration type="ClassDeclaration" />)
         }
     }
 }

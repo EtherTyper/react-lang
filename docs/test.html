@@ -194,6 +194,7 @@ ClassBody:
       debugger;
     }
   
+    static [hello] = world;
   }
 Constructor ClassMethod: 
   @greetable
@@ -204,6 +205,22 @@ ClassMethod:
   @greetable
   static get async [helloWorld]([hello, world, object]) {
     debugger;
+  }
+ClassProperty: static [hello] = world;
+ClassDeclaration: 
+  @greetable
+  class Greeter extends AbstractGreeter {
+    @greetable
+    *constructor([hello, world, object]) {
+      debugger;
+    }
+  
+    @greetable
+    static get async [helloWorld]([hello, world, object]) {
+      debugger;
+    }
+  
+    static [hello] = world;
   }
 
 <b><span style="color:#00A">Special Components
