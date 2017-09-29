@@ -205,7 +205,8 @@ DO YOU CONSIDER YOURSELF A MASTER PROGRAMMER? BUT ARE YOU DISCOURAGED BY THE FAC
     }
     ```
     </details>
--   [AND](https://ethertyper.github.io/react-lang/test.html) [MORE](./src/test.js)
+    
+[AND MORE!](https://ethertyper.github.io/react-lang/test.html)
 
 Stuff in the `src` folder is being actively worked on. You can see my progress [here](./spec.md).
 
