@@ -338,7 +338,7 @@ testElement(<super />);
 testElement(<import />);
 testElement(<thisExpression />);
 testElement(
-    <arrowFunction id={<identifier>helloWorld</identifier>} async={true} params={
+    <arrowFunction async={true} params={
         [
             <arrayPattern>
                 <identifier>hello</identifier>
@@ -353,7 +353,7 @@ testElement(
     </arrowFunction>, 'Block ArrowFunction'
 );
 testElement(
-    <arrowFunction id={<identifier>helloWorld</identifier>} async={true} params={
+    <arrowFunction async={true} params={
         [
             <arrayPattern>
                 <identifier>hello</identifier>

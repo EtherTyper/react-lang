@@ -122,7 +122,7 @@ DO YOU CONSIDER YOURSELF A MASTER PROGRAMMER? BUT ARE YOU DISCOURAGED BY THE FAC
     <summary>FUNCTIONS</summary>
     
     ```jsx
-    <arrowFunction id={<identifier>helloWorld</identifier>} async={true} params={
+    <arrowFunction async={true} params={
         [
             <arrayPattern>
                 <identifier>hello</identifier>
