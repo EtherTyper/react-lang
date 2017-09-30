@@ -24,6 +24,18 @@ const functionalElement = (
     </HelloGenerator>
 );
 
+const getStack = exception => cleanStacktrace(exception.stack, (line) => {
+    let filePath = undefined;
+
+    if (/[\(\)]/.test(line)) {
+        filePath = (/.*\((.*)\).?/.exec(line) || [])[1]
+    } else {
+        filePath = (/[^ \:]*(?=\:)/.exec(line) || [])[0]
+    }
+    
+    return filePath ? line.replace(filePath, path.relative(process.cwd(), filePath)) : line
+});
+
 function testElement(element, description = null) {
     description = description || reduceToTree(element).type;
     description = description.charAt(0).toUpperCase() + description.slice(1);
@@ -40,12 +52,7 @@ function testElement(element, description = null) {
     } catch (exception) {
         process.stdout.write('\u001B[1;31m'); // Red and bold.
         if (process.env.DEBUG) {
-            const stack = cleanStacktrace(exception.stack, (line) => {
-                const paths = /.*\((.*)\).?/.exec(line) || []
-                return paths[1] ? line.replace(paths[1], path.relative(process.cwd(), paths[1])) : line
-            })
-
-            console.log(`${description}: ${stack}`);
+            console.log(`${description}: ${getStack(exception)}`);
         } else {
             console.log(`${description}: ${exception}`);
         }
@@ -923,24 +930,26 @@ testElement(functionalElement, 'Functional Element'); // User-defined components
         </parse>, 'Selective ParsedElement'
     );
     
-    await promisify(fs.writeFile)('./docs/test.html', 
-        ReactDOMServer.renderToStaticMarkup(
-            <html>
-                <body>
-                    <pre style={{overflow: 'auto', padding: '10px 15px', fontFamily: 'monospace'}}>
-                        <h1>
-                            Complete List of React-Lang Components
-                        </h1>
-                        <h3>
-                            NOTE: This is just the compiled output. To see the JSX code used to construct <br />
-                            these elements, please see src/test.js. To see the current progress and what <br />
-                            JavaScript features I've yet to implement, see the checklist in spec.md.
-                        </h3>
+    if (process.env.DEBUG) {
+        await promisify(fs.writeFile)('./docs/test.html', 
+            ReactDOMServer.renderToStaticMarkup(
+                <html>
+                    <body>
+                        <pre style={{overflow: 'auto', padding: '10px 15px', fontFamily: 'monospace'}}>
+                            <h1>
+                                Complete List of React-Lang Components
+                            </h1>
+                            <h3>
+                                NOTE: This is just the compiled output. To see the JSX code used to construct <br />
+                                these elements, please see src/test.js. To see the current progress and what <br />
+                                JavaScript features I've yet to implement, see the checklist in spec.md.
+                            </h3>
 
-                        <div dangerouslySetInnerHTML={{__html: (new Convert()).toHtml(testOutput)}} />
-                    </pre>
-                </body>
-            </html>
-        )
-    );
+                            <div dangerouslySetInnerHTML={{__html: (new Convert()).toHtml(testOutput)}} />
+                        </pre>
+                    </body>
+                </html>
+            )
+        );
+    }
 })();
