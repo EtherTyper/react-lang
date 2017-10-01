@@ -501,7 +501,9 @@ testElement(
 testElement(
     <member computed={true} optional={true}>
         <identifier>world</identifier>
-        <identifier>sayHello</identifier>
+        <call>
+            <identifier>getHelloPropertyName</identifier>
+        </call>
     </member>
 )
 testElement(
@@ -713,7 +715,7 @@ testElement(
     </classBody>
 );
 testElement(
-    <classMethod id={<identifier>constructor</identifier>} generator={true} kind="constructor" params={
+    <classMethod generator={true} kind="constructor" params={
         [
             <arrayPattern>
                 <identifier>hello</identifier>
@@ -734,7 +736,7 @@ testElement(
     </classMethod>, 'Constructor ClassMethod'
 );
 testElement(
-    <classMethod id={<identifier>helloWorld</identifier>} computed={true} static={true} async={true} kind="get" params={
+    <classMethod computed={false} static={true} async={true} kind="get" params={
         [
             <arrayPattern>
                 <identifier>hello</identifier>
@@ -748,7 +750,9 @@ testElement(
                 greetable
             </identifier>
         </decorator>
-        <identifier>helloWorld</identifier>
+        <call>
+            <identifier>getMethodName</identifier>
+        </call>
         <block>
             <debugger />
         </block>

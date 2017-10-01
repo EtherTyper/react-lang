@@ -142,7 +142,7 @@ Binary: 3 === 4
 AssignmentExpression: helloWorld >>>= 4
 Logical: 3 || 4
 Spread: ...toExtend
-Member: world?.[sayHello]
+Member: world?.[getHelloPropertyName()]
 Bind: world::sayHello
 Conditional: 3 ? 4 : 5
 Call: hello?.(world, "What's up world?")
@@ -203,7 +203,7 @@ Constructor ClassMethod:
   }
 ClassMethod: 
   @greetable
-  static get async [helloWorld]([hello, world, object]) {
+  static get async getMethodName()([hello, world, object]) {
     debugger;
   }
 <b><span style="color:#A00">ClassPrivateMethod: ReferenceError: unknown node of type "ClassPrivateMethod" with constructor "Object"
@@ -213,7 +213,7 @@ ClassMethod:
     at exports.default (node_modules/babel-generator/lib/index.js:8:14)
     at render (lib/index.js:144:39)
     at testElement (lib/test.js:73:37)
-    at Object.<anonymous> (lib/test.js:322:1)
+    at Object.<anonymous> (lib/test.js:320:1)
 </span></b>Generated AST for ClassPrivateMethod: {
   "type": "ClassPrivateMethod",
   "loc": {
@@ -227,15 +227,7 @@ ClassMethod:
     ],
     "directives": []
   },
-  "id": {
-    "type": "PrivateName",
-    "loc": null,
-    "id": {
-      "type": "Identifier",
-      "loc": null,
-      "name": "helloWorld"
-    }
-  },
+  "id": null,
   "params": [
     {
       "type": "ArrayPattern",

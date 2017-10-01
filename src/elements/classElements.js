@@ -31,7 +31,6 @@ const Classes = (Super = Object) => class BasicElements extends Super {
         let decorators = children.filter((child) => child.type === 'Decorator');
         let [ key, body ] = props.children.filter((child, index) => children[index].type !== 'Decorator');
 
-        let id = props.id || null;
         let params = props.params;
         let generator = typeof props.generator === 'boolean' ? props.generator : false;
         let async = typeof props.async === 'boolean' ? props.async : false;
@@ -44,7 +43,7 @@ const Classes = (Super = Object) => class BasicElements extends Super {
         
         return {
             ...generateAST(
-                <function type="ClassMethod" id={id} params={params} generator={generator} async={async}>
+                <function type="ClassMethod" id={null} params={params} generator={generator} async={async}>
                     {body}
                 </function>
             ),
@@ -60,7 +59,6 @@ const Classes = (Super = Object) => class BasicElements extends Super {
         let decorators = children.filter((child) => child.type === 'Decorator');
         let [ key, body ] = props.children.filter((child, index) => children[index].type !== 'Decorator');
 
-        let id = props.id || null;
         let params = props.params;
         let generator = typeof props.generator === 'boolean' ? props.generator : false;
         let async = typeof props.async === 'boolean' ? props.async : false;
@@ -70,7 +68,7 @@ const Classes = (Super = Object) => class BasicElements extends Super {
         
         return {
             ...generateAST(
-                <function type="ClassPrivateMethod" id={id} params={params} generator={generator} async={async}>
+                <function type="ClassPrivateMethod" id={null} params={params} generator={generator} async={async}>
                     {body}
                 </function>
             ),
