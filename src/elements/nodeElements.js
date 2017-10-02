@@ -1,4 +1,17 @@
+import generate from 'babel-generator'
+
 const Nodes = (Super = Object) => class BasicElements extends Super {
+    static Node = class Node {
+        constructor(type, loc) {
+            this.type = type;
+            this.loc = loc;
+        }
+
+        get rendered() {
+            return generate(this).code;
+        }
+    }
+
     static node(element, props, children) {
         let type = '';
         
@@ -10,10 +23,7 @@ const Nodes = (Super = Object) => class BasicElements extends Super {
 
         let loc = children.shift() || null;
 
-        return {
-            type,
-            loc
-        };
+        return new this.Node(type, loc);
     }
 
     static sourceLocation(element, props, children) {
