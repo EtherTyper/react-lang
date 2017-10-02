@@ -65,22 +65,28 @@ export function flatten(array) {
     }, []);
 }
 
-export const keyGenerator = (function* keyed(start) {
+export const keyGeneratorFunction = (function* keyed(start) {
     let key = start;
 
     while (true) yield `ReactLang Element ${key++}`;
-})(0)
+})
 
 export function generateASTFromTree(element) {
     if (Array.isArray(element)) {
         return generateAST(
             <arrayExpression>
-                {element.map((element) => {
-                    return {
-                        ...element,
-                        key: keyGenerator.next().value
-                    }
-                })}
+                {
+                    (() => {
+                        const keyGenerator = keyGeneratorFunction(0) // Assume array parameters are stable across renders.
+
+                        return element.map((element) => {
+                            return {
+                                ...element,
+                                key: keyGenerator.next().value
+                            }
+                        })
+                    })()
+                }
             </arrayExpression>
         );
     }
