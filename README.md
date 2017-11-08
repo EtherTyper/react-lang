@@ -211,4 +211,4 @@ Stuff in the `src` folder is being actively worked on. You can see my progress [
 
 ### Mr. Rosier: Yes, this is Eli Bradley's project. Please click on the username.
 
-All contributions are welcome, as long as you want to license your contributions under the same MIT license!
+All contributions are welcome, as long as you want to license your contributions under the same Apache 2.0 license!
